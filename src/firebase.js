@@ -12,7 +12,6 @@ var firebaseConfig = {
   measurementId: process.env.VUE_APP_FIREBASE_MEASUREMENT_ID
 };
 
-
 const firebaseApp = firebase.initializeApp(firebaseConfig)
 const timeStamp = firebase.firestore.Timestamp.fromDate(new Date());
 

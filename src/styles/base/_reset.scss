@@ -1,0 +1,54 @@
+html {
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+    // &.text-color-primary {
+    //     color: $primary;
+    // }
+    // &.text-color-secondary {
+    //     color: $secondary;
+    // }
+    // &.text-color-white {
+    //     color: $white;
+    // }
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+input {
+    outline: none;
+}
+
+button {
+    all: unset;
+}
+
+a {
+    text-decoration: none;
+    color: unset;
+    cursor: pointer;
+    &:visited {
+        color: unset;
+    }
+}
