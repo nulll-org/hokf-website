@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "house-of-kits-and-fits",
+  "private_key_id": "3541a255648ca4955c148055cf86447b835eb734",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDhTAmXfYL7Slzw\nJU74SMPOE93jTS4hrCN8v48g+JqSt8wAcfuD/qaLZbpqhwt7KV0D3YU2umB6TKKF\nPfj1dacpZziqAtMndiv0r9TM468exGc04lGItRvDLCU1ooq/ghu77QVfdLdLRTaG\nn9bLTh/DnPj1KVP+GNKrNQ433I6ye8BCCYJvhs6TOuGEdXqAwqGomFe3v/ezYfvk\ni4tromn/br2GTw8ghZJ9daEJcB7QnAFDuBJmBeKtT7GbdYs53RvFbaMWre6dgAMf\nM2lYPPsmS064h7M+VCSaKbKx8ySlVWRjq2RzjYZIBKAA8d5r8XS/xOmia5Pa7dNq\nzHn2LHkZAgMBAAECggEAGsknR8lOmhFOiOeqoqbGDtl6U0SxFCRK6NE+k1kzSXfM\nK45hrKEJTH/5AKLTKN6zVhsPdEEG6Ot1FBnY4FgPWoMQ79eborCwS6xfBMgaITKR\nIa65qmL77MGyH9UWIWw232ov7hgqlaqiL7HPwAanDKL8T2uNNqPdYikR6m7Q0WPf\nh0mPRLpDi/8ckyij2WNJLodxuS2Rwj67TF0kU3Pzu07lHB09A1stITMpCXllVRpi\nvP3NaU8K0r/C+2KVzfKzC2fntuoTA2vCssPaBee+lzgOwADCk4ByOz9rRLzBXtay\n3N1gMnVhpL/PgjF5sidwtEEICwBfmcHKd/a+Jcs7TQKBgQD3eVtxyXrSh9ibkWsT\ncSvAGAAzb6H0DAtd7r0CDQ69bqZ1VPVOxFCd8qIoPeTF22eIuDOmhuX3CUdVA8z7\n7kNOIqDgsYXWdwLN5M6gQQdm+U99ljCsU2jC7AD6a+RR4kpdKcw8Hijiy8n28QJf\nBTMQzGklujW+Yhf+9qXHO9o4fQKBgQDpDxX8AY5N3KiSrIjOAw8SU/8xMrG3mY5O\nJs/3wHXA2Fp3Sl3cwq0bfwvPk+5H8nI4JxgExKL75xqY0+V3mOzvf3+elKOwo9bf\nzbcNyFbzoTIxg1hDw+UXIBaEeOJbvZhVBFvsYukVQj25UTgvc7eRxOS0Vz9VeuRt\nOOoVsePBzQKBgFNoC3HmPgcG0fJcqIH8+onbjPXJAgSGqq4V8I3oaLdfu6p/382U\nTLdvN0fo1Fn7AIIL0xylCoygC/KTPVsLipOjCCWyrzEBG2jZXOqWADCshiYFoJHz\n6rMHZ6z/AAy4/+c2VydL4uvNU1xvDiWIUxWuTyHwCH0KApxj9KuZeIrhAoGBAJeZ\nLo28XVqcfDLcdCi9qKIdbVQNS7jH8982M/VOhcopcb9C6oddQskt/PrLmSXHuTB5\njZAccIA3Nf/PZeZD3Wt0ngkDWu7dxDnUUIxwks7rPgEjFNkPpgdC4iLNl0BhtaMn\nsLu1IzSm4AuZn1iOhwwU7Ue5sQLja474hJwUGLjJAoGBAKD6F1fyVajoQfvVd2fz\nyIePar8Wthb2tYyFk2tn5RLlD0T2cRlY7bEUQIsEmUl/1fbIXz1sgWSuGx7TJEKD\n7WrL8yvrwNhjJDAc7gqXpsyG2jgEPoqVE4RVOvlmTMlmTD7s9iPFlKXvW7bMXE6L\nDAAjnQwp1dvnkx3B/SjnxZ++\n-----END PRIVATE KEY-----\n",
+  "client_email": "house-of-kits-and-fits@appspot.gserviceaccount.com",
+  "client_id": "118444126119879473558",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/house-of-kits-and-fits%40appspot.gserviceaccount.com"
+}

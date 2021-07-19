@@ -1,0 +1,10 @@
+{
+  "mailtrap": {
+    "pass": "0fc3bfac0aa289",
+    "user": "e044acc27e686d"
+  },
+  "paystack_test": {
+    "secret": "sk_test_21d7ff71fd13e04fb40d2a2333d108ea5fcbfc57",
+    "public": "pk_test_e5049c8dad96038862be114afef0160aa3533c41"
+  }
+}
