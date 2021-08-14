@@ -1,7 +1,9 @@
 const plugin = require('tailwindcss/plugin')
 
 module.exports = {
-  purge: ['./index.html', './src/**/*.{vue,js,ts}'],
+  purge: {
+    content: ['./src/**/**/*.{html,scss}', './src/*.vue']
+  },
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
