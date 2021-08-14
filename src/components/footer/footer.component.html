@@ -1,0 +1,73 @@
+<div
+    class="h-52 relative px-8 pt-4 pb-4 flex flex-col items-center space-y-4 justify-center bg-dark-grey md:h-96 md:space-x-8 md:px-16 lg:px-32 md:pb-4 md:pt-16 md:justify-between md:items-start">
+    <div class="absolute -right-28 opacity-10 w-52 md:w-80 md:-right-40 z-0">
+        <img src="../../assets/icon.png">
+    </div>
+    <div class="md:flex md:justify-between md:w-full">
+        <div class="md:flex md:flex-col md:w-52 md:space-y-4">
+            <router-link to="/" class="logo cursor-pointer">
+                <h1 class="font-extrabold text-4xl text-white">HOKF</h1>
+                <!-- <img class="object-cover" src="../../assets/logo.png" alt="HOKF Logo"> -->
+            </router-link>
+            <p class="hidden md:block    md:text-gray-500">Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae veniam corrupti
+                quasi voluptatibus
+                eveniet</p>
+        </div>
+        <div class="hidden lg:flex md:flex-col md:space-y-4 ">
+            <p class="text-white text-lg font-medium">Quick Links</p>
+            <div class="flex flex-col space-y-8">
+                <router-link to="/about">
+                    <p class="text-gray-500 hover:text-white">About</p>
+                </router-link>
+                <router-link to="/reservation">
+                    <p class="text-gray-500 hover:text-white">Reservation</p>
+                </router-link>
+            </div>
+        </div>
+        <div class="hidden md:flex md:flex-col md:space-y-4 ">
+            <p class="text-white text-lg font-medium">Services</p>
+            <div class="flex flex-col space-y-8">
+                <router-link to="/about">
+                    <p class="text-gray-500 hover:text-white">Jersey Sales</p>
+                </router-link>
+                <router-link to="/reservation">
+                    <p class="text-gray-500 hover:text-white">Fitness</p>
+                </router-link>
+                <router-link to="/reservation">
+                    <p class="text-gray-500 hover:text-white">Outdoor Games</p>
+                </router-link>
+            </div>
+        </div>
+        <div class="hidden md:flex md:flex-col md:space-y-4 ">
+            <p class="text-white text-lg font-medium">Reach us</p>
+            <div class="flex flex-col space-y-8">
+                <div class="flex group space-x-2">
+                    <icon icon="fluent:mail-48-filled" class="text-purple-600" height="24" width="24" />
+                    <a href="mailto:info@hokfgardens.com">
+                        <p class="text-gray-500 group-hover:text-white">info@hokfgardens.com</p>
+                    </a>
+                </div>
+                <div class="flex group space-x-2">
+                    <icon icon="ci:phone" class="text-purple-600" height="24" width="24" />
+                    <a href="tel:+2348146221315">
+                        <p class="text-gray-500 group-hover:text-white">+2348146221315</p>
+                    </a>
+                </div>
+                <div class="flex group space-x-2">
+                    <icon icon="akar-icons:location" class="text-purple-600" height="24" width="24" />
+                    <a href="https://goo.gl/maps/EoJ2Lmj7P754WjaQ9">
+                        <p class="text-gray-500 group-hover:text-white">Plot 131B, Okonjo Iweala Street, Wuye</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="flex space-x-4 items-center mx-auto z-10 md:hidden">
+        <icon icon="akar-icons:instagram-fill" color="white" height="24" width="24" />
+        <icon icon="akar-icons:twitter-fill" color="white" height="24" width="24" />
+    </div>
+    <div class="copyright mt-4">
+        <p class="text-xs font-light text-white text-center">© 2021 HOKF. All rights reserved</p>
+    </div>
+</div>
