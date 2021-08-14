@@ -8,12 +8,51 @@
 // $pomegranate-red: #ef2121;
 // $green: #0ccd09;
 // $bright-orange: #ffce50;
+
+$green: #D3EEBF;
+$deep-green: #56AD38;
+$dark-grey: #0B0D17;
+$turquoise: #2EC5CE;
 //System Colors
 // $error: ;
 // $success: ;
 // $warning: ;
+
 //App Colors
 // $primary: ;
-// $secondary: ;
-// $tertiary: ;
-// $background-primary: ;
+$secondary: $green;
+$tertiary: $turquoise;
+$background-primary: $dark-grey;
+
+
+.text-secondary {
+    color: $secondary;
+}
+
+.bg-secondary {
+    background-color: $secondary;
+}
+
+.text-tertiary {
+    color: $tertiary;
+}
+
+.bg-tertiary {
+    background-color: $tertiary;
+}
+
+.text-dark-grey {
+    color: $dark-grey;
+}
+
+.bg-dark-grey {
+    background-color: $dark-grey;
+}
+
+.text-deep-green {
+    color: $deep-green;
+}
+
+.bg-deep-green {
+    background-color: $deep-green;
+}

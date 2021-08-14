@@ -1,3 +1,99 @@
-<section class="about-page">
-    <h1>about-page Component</h1>
-</section>
+<div id="about">
+    <section id="landing" class="text-center bg-cover ">
+        <div class="flex flex-col items-center justify-center h-full px-8 space-y-4 md:w-1/2 md:mx-auto">
+            <h1 class="font-extrabold md:text-4xl lg:text-7xl">GET TO KNOW THE HOKF FAMILY</h1>
+            <p class="md:text-lg lg:text-xl">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit facilis atque mollitia rerum
+                qui
+                repellendus! Voluptates aperiam ratione possimus quasi repudiandae quod itaque autem dignissimos quam
+                quibusdam. Dicta, incidunt quidem.</p>
+        </div>
+    </section>
+    <section id="team" class="bg-dark-grey h-full py-16">
+        <div class="header text-center">
+            <h1 class="font-extrabold text-white">Meet Our People</h1>
+        </div>
+        <div class="team px-8 py-4 md:flex md:flex-col">
+            <div class="md:flex md:w-11/12 lg:w-3/4 md:mx-auto md:space-x-6">
+                <div class="activity bg-white p-8 mb-8 w-full md:w-1/3 h-full flex flex-col rounded-xl space-y-8">
+                    <div class="icon">
+                        <icon icon="fluent:people-team-20-filled" width="30" class="text-purple-600" />
+                    </div>
+                    <div>
+                        <h3 class="mb-2">Mr. Kola Sanni</h3>
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                            Est autem omnis earum voluptatem
+                            corporis</p>
+                    </div>   
+                </div>
+                <div class="activity bg-white p-8 mb-8 w-full md:w-1/3 h-full flex flex-col rounded-xl space-y-8">
+                    <div class="icon">
+                        <icon icon="fluent:people-team-20-filled" width="30" class="text-purple-600" />
+                    </div>
+                    <div>
+                        <h3 class="mb-2">Mrs. Olayinka Sanni</h3>
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                            Est autem omnis earum voluptatem
+                            corporis</p>
+                    </div>   
+                </div>
+                <div class="activity bg-white p-8 mb-8 w-full md:w-1/3 h-full flex flex-col rounded-xl space-y-8">
+                    <div class="icon">
+                        <icon icon="fluent:people-team-20-filled" width="30" class="text-purple-600" />
+                    </div>
+                    <div>
+                        <h3 class="mb-2">Mr. Abdulagaffar Sanni</h3>
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                            Est autem omnis earum voluptatem
+                            corporis</p>
+                    </div>   
+                </div>
+            </div>
+            <button class="py-2 px-4 cursor-pointer mx-auto flex items-center border border-solid border-white rounded-lg text-white">
+                <p>
+                    Explore all
+                </p>
+                <icon icon="akar-icons:arrow-right" class="ml-2" />
+            </button>
+        </div>
+    </section>
+    <section id="contact-us" class="bg-secondary h-full py-16 lg:flex lg:py-0">
+        <div class="header flex flex-col text-center px-8 pb-4 lg:w-1/2 lg:px-32 lg:justify-center lg:text-left">
+            <h1 class="font-extrabold">Contact Us</h1>
+            <p class="md:text-xl">Share your ideas and queries with us.</p>
+        </div>
+        <div class="form bg-deep-green px-8 py-8 md:px-32 lg:w-1/2 lg:pl-0 lg:pr-48">
+            <div class="relative p-8 w-full flex flex-col space-y-8 bg-white">
+                <div class="absolute right-2 top-6 w-20">
+                    <icon icon="grommet-icons:contact" width="50" />
+                </div>
+                <div class="input flex flex-col space-y-3">
+                    <p>Name</p>
+                    <div class="px-4 py-3 border border-solid border-gray-700 w-full">
+                        <input class="font-inter" type="text" placeholder="Enter your name">
+                    </div>
+                </div>
+                <div class="input flex flex-col space-y-3">
+                    <p>Email</p>
+                    <div class="px-4 py-3 border border-solid border-gray-700 w-full">
+                        <input class="font-inter" type="email" placeholder="Enter your email">
+                    </div>
+                </div>
+                <div class="input flex flex-col space-y-3">
+                    <p>Subject</p>
+                    <div class="px-4 py-3 border border-solid border-gray-700 w-full">
+                        <input class="font-inter" type="text" placeholder="What do you want tell us?">
+                    </div>
+                </div>
+                <div class="input flex flex-col space-y-3">
+                    <p>Message</p>
+                    <div class="px-4 py-3 border border-solid border-gray-700 w-full h-full">
+                        <textarea class="font-inter w-full h-full" type="text" placeholder="Shoot!"></textarea>
+                    </div>
+                </div>
+                <button class="px-4 py-3 text-center text-white font-inter font-bold text-lg bg-dark-grey">
+                    Submit
+                </button>
+            </div>
+        </div>
+    </section>
+</div>

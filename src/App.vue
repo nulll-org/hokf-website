@@ -1,13 +1,17 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+  <div id="app-root" class="overflow-x-hidden">
+    <div id="app-header" class="h-full">
+      <Header />
     </div>
-    <router-view/>
+    <div id="app-body" class="h-full">
+      <router-view />
+    </div>
+    <div id="app-footer" class="h-full">
+      <Footer />
+    </div>
   </div>
 </template>
 
-<style lang="scss">
-@import '@/styles/index.scss';
-</style>
+<script src="./App.js" lang="js"></script>
+
+<style src="./App.scss" lang="scss"></style>
