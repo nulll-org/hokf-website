@@ -1,16 +1,6 @@
 export class Product {
-  productId = String;
-  name = String;
-  photo = String;
-  type = String;
-  description = String;
-  price = Number;
-  isInStock = Boolean;
-  isOnSale = Boolean;
-  discountPercentage = Number;
-
   constructor(product, id) {
-    this.productId = id
+    this.id = id
     this.name = product.name;
     this.photo = product.photo;
     this.type = product.type;
@@ -18,6 +8,12 @@ export class Product {
     this.price = product.price;
     this.isOnSale = product.isOnSale;
     this.isInStock = product.isInStock;
+    this.quantityAvailable = product.quantityAvailable;
+    this.quantitySold = product.quantitySold;
     this.discountPercentage = product.discountPercentage;
+  }
+
+  get discountedPrice() {
+    return this.price - (this.price * this.discountPercentage / 100)
   }
 }

@@ -1,14 +1,18 @@
+import { CartService } from "../../services/cart.service"
+import { Product } from '../../classes/product';
 import * as firebase from '../../firebase';
 import * as reponseConverterService from '../../services/response-converter.service'
 import cart from './cart'
 
 const state = {
-    products: Array()
+    products: Array(),
+    product: Product,
+    cartService: new CartService()
 }
 
-const getters = {
-    products: state => state.products
-}
+// const getters = {
+//     products: state => state.products
+// }
 
 const mutations = {
     setProducts: (state, products) => {
@@ -16,7 +20,10 @@ const mutations = {
         products.forEach(product => {
             state.products.push(reponseConverterService.convertToProduct(product))
         })
-    }
+    },
+    setProduct: (state, product) => {
+        state.product = reponseConverterService.convertToProduct(product)
+    },
 }
 
 const actions = {
@@ -24,19 +31,26 @@ const actions = {
         const products = await firebase.productCollection.get()
         commit('setProducts', products)
     },
-    checkOut(context, order) {
-        console.log(order)
-        order.cartItems.forEach((cartItem) => {
-            firebase.inventoryCollection.get().then((inventory) => {
-                inventory.forEach((doc) => {
-                    if(doc.data().product.id === cartItem.product.id) {
-                        firebase.inventoryCollection.doc(doc.id).update
-                    }
-                })
-            })
-        })
-        // firebase.orderCollection.doc().set(Object.assign({}, order))
-    }
+    async fetchProduct({ commit }, productId) {
+        const product = await firebase.productCollection.doc(productId).get()
+        commit('setProduct', product)
+    },
+    async placeOrder(context, order) {
+        await firebase.orderCollection.add(Object.assign({}, order));
+    },
+    // checkOut(context, order) {
+    //     console.log(order)
+    //     order.cartItems.forEach((cartItem) => {
+    //         firebase.inventoryCollection.get().then((inventory) => {
+    //             inventory.forEach((doc) => {
+    //                 if(doc.data().product.id === cartItem.product.id) {
+    //                     firebase.inventoryCollection.doc(doc.id).update
+    //                 }
+    //             })
+    //         })
+    //     })
+    //     // firebase.orderCollection.doc().set(Object.assign({}, order))
+    // }
 }
 
 const modules = {
@@ -45,7 +59,7 @@ const modules = {
 
 export default {
     state,
-    getters,
+    // getters,
     mutations,
     actions,
     modules

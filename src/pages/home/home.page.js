@@ -2,6 +2,8 @@
 // import { Order } from "../../classes/order"
 // import * as firebase from '../../firebase';
 
+import onlineStore from "../../store/modules/online-store"
+
 export default {
     name: 'Home',
     components: {},
@@ -12,14 +14,24 @@ export default {
         }
     },
     computed: {
+        products() {
+            return onlineStore.state.products
+        }
         // ...mapGetters(["products", "cart"])
     },
     mounted() {
+        this.$store.dispatch("fetchProducts")
 
     },
     methods: {
         // ...mapActions(["fetchProducts", "addToCart", "checkOut"])
     },
+    created() {
+        // fetch('https://us-central1-house-of-kits-and-fits.cloudfunctions.net/test')
+        //     .then((p) => {
+        //         console.log(p)
+        //     })
+    }
     // created() {
     //     /*
     //     * Test methods. Will remove soon.
@@ -28,7 +40,7 @@ export default {
     //     let cartItems = [];
     //     this.cart.forEach(cartItem => {
     //         let productReference = firebase.productCollection.doc(cartItem.product.productId)
-            
+
     //         cartItems.push({product: productReference, quantity: cartItem.quantity, price: cartItem.price})
     //     });
     //     let details = {

@@ -1,0 +1,21 @@
+<section id="store-main">
+
+    <section id="header">
+
+    </section>
+    <section id="landing" class="px-7 flex flex-col w-full min-h-70vh md:px-16">
+        <div class="products my-8 flex flex-wrap whitespace-nowrap justify-between md:justify-start md:gap-x-9 lg:gap-x-10">
+            <div v-for="product in products" :key="product.id" @click="goToProduct(product.id)"
+                class="product group flex flex-col space-y-4 mb-4 w-48% md:cursor-pointer md:w-30% lg:mb-6 lg:w-22%">
+                <div class="w-full h-56 md:h-72 lg:h-96 group-hover:">
+                    <img :src="product.photo || 'https://source.unsplash.com/featured/?shirt'" alt="">
+                </div>
+                <div class="flex flex-col space-y-1">
+                    <p class="text-md font-inter w-auto overflow-ellipsis overflow-hidden md:text-lg lg:text-xl">{{ product.name }}</p>
+                    <p class="text-sm font-inter w-auto overflow-ellipsis overflow-hidden md:text-md lg:text-lg">{{ product.type || 'Jersey' }}</p>
+                    <money class="font-inter font-bold md:text-lg" disabled :value="product.discountedPrice" />
+                </div>
+            </div>
+        </div>
+    </section>
+</section>

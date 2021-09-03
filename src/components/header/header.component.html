@@ -1,12 +1,25 @@
-<div>
-    <div class="navigation px-8 py-4 flex items-center justify-between md:justify-start">
-        <router-link to="/" class="logo w-20 mr-4 cursor-pointer">
-            <!-- <h1 class="font-extrabold text-3xl">HOKF</h1> -->
-            <img class="object-cover" src="../../assets/logo.jpg" alt="HOKF Logo">
+<div class="header relative z-30">
+    <div
+        class="absolute navigation px-6 py-4 w-full bg-white flex items-center justify-between z-30 md:justify-start md:px-20">
+        <div @click="" class="relative">
+            <div class="absolute absolute-center">
+                <p class="font-inter font-bold text-xs">{{ cartSize }}</p>
+            </div>
+            <icon icon="bytesize:bag" class="cursor-pointer md:hidden" height="32" width="32" />
+        </div>
+        <router-link to="/" class="logo w-20 md:mr-10 cursor-pointer">
+            <h1 @click="isNavOpen = false" class="font-extrabold text-3xl">HOKF</h1>
+            <!-- <img @click="isNavOpen = false" class="object-cover" src="../../assets/logo.jpg" alt="HOKF Logo"> -->
         </router-link>
         <div class="hidden md:flex md:space-x-6">
             <router-link to="/about">
                 <p class="font-inter">About</p>
+            </router-link>
+            <router-link to="/store">
+                <p class="font-inter">Store</p>
+            </router-link>
+            <router-link to="/reservation">
+                <p class="font-inter font-bold">Make a Reservation!</p>
             </router-link>
             <router-link to="/services">
                 <p class="font-inter">Services</p>
@@ -15,6 +28,35 @@
                 <p class="font-inter">Contact Us</p>
             </router-link>
         </div>
-        <icon icon="akar-icons:three-line-horizontal" class="cursor-pointer md:hidden" height="32" width="32" />
+        <div class="hidden lg:flex lg:ml-auto" v-if="isInStore">
+            <div class="pr-4 py-2 flex items-center space-x-3 border-b border-solid border-gray-700 w-full">
+                <icon icon="clarity:search-line" width="14" height="14" />
+                <input class="font-inter w-full text-sm" type="email" placeholder="Search store">
+            </div>
+        </div>
+        <div @click="toggleNav()">
+            <icon icon="grommet-icons:menu" class="cursor-pointer md:hidden" height="32" width="32" />
+        </div>
     </div>
+    <transition enter-active-class="animate__animated animate__slideInDown"
+        leave-active-class="animate__animated animate__slideOutUp">
+        <div class="p-8 top-20 flex flex-col space-y-4 text-right w-full h-ful absolute bg-white md:hidden "
+            v-if="isNavOpen">
+            <router-link to="/about">
+                <p @click="toggleNav()" class="font-inter text-xl">About</p>
+            </router-link>
+            <router-link to="/store">
+                <p @click="toggleNav()" class="font-inter text-xl">Store</p>
+            </router-link>
+            <router-link to="/reservation">
+                <p @click="toggleNav()" class="font-inter font-bold text-xl">Make a Reservation!</p>
+            </router-link>
+            <router-link to="/services">
+                <p @click="toggleNav()" class="font-inter text-xl">Services</p>
+            </router-link>
+            <router-link to="/about#contact-us">
+                <p @click="toggleNav()" class="font-inter text-xl">Contact Us</p>
+            </router-link>
+        </div>
+    </transition>
 </div>
