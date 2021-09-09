@@ -1,4 +1,5 @@
 import Home from '@/pages/home/index.vue';
+import Cart from '@/pages/cart/index.vue';
 import Store from '@/pages/store/index.vue';
 import Product from '@/pages/product/index.vue';
 import StoreMain from '@/pages/store-main/index.vue';
@@ -9,6 +10,7 @@ import Checkout from '@/pages/checkout/index.vue';
 
 const routes = [
   { path: '/', name: 'Home', component: Home },
+  { path: '/cart', name: 'Cart', component: Cart },
   { path: '/store', name: 'Store', component: Store },
   { path: '/about', name: 'About', component: About },
   { path: '/checkout', name: 'Checkout', component: Checkout },

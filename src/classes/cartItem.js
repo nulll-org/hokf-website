@@ -1,11 +1,13 @@
+import { Product } from "./product";
+
 export class CartItem {
   constructor(cartItem) {
-    this.product = cartItem.product;
+    this.product = new Product(cartItem.product, cartItem.product.id);
     this.size = cartItem.size;
     this.quantity = cartItem.quantity;
   }
   
   get price() {
-    return this.product.price - (this.product.price * (this.product.discountPercentage / 100));
+    return this.product.discountedPrice * this.quantity;
   }
 }

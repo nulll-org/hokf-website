@@ -1,24 +1,30 @@
 <div id="product" class="md:pt-4 lg:pt-8">
     <div class="hidden md:flex md:px-10 md:mb-8 lg:px-48 xl:px-80">
-        <router-link to="/store/main">Go back to store</router-link>
+        <div @click="goBackToStore" class="cursor-pointer">
+            <p class="hover:underline cursor-pointer"> Go back to store </p>
+        </div>
     </div>
-    <div class="product group flex flex-col space-y-4 mb-8 w-full md:px-10 md:flex-row md:space-y-0 md:space-x-8 lg:px-48 xl:px-80 xl:h-70vh">
-        <div class="w-full h-full xl:h-3/4 z-50">
-            <img :src="product.photo || 'https://source.unsplash.com/featured/?shirt'" alt="">
+    <div v-if="product"
+        class="product group flex flex-col space-y-4 mb-8 w-full md:px-10 md:flex-row md:space-y-0 md:space-x-8 lg:px-48 xl:px-80 xl:h-70vh">
+        <div class="w-full h-70vh md:h-80vh xl:h-5/6 relative select-none md:z-50">
+            <div class="absolute right-4 top-4 px-3 py-2 bg-dark-grey text-white" v-if="product.discountPercentage > 0">
+                {{product.discountPercentage}}% OFF
+            </div>
+            <img :src="product.photo" alt="">
         </div>
         <div class="mb-4 px-4 flex flex-col space-y-6 md:space-y-8">
             <div class="flex flex-col space-y-1">
                 <p class="text-2xl font-inter w-auto overflow-ellipsis overflow-hidden">{{ product.name }}</p>
                 <p class="text-md font-inter w-auto overflow-ellipsis overflow-hidden md:text-md lg:text-lg">{{
                     product.type || 'Jersey' }}</p>
-                <money class="font-inter font-bold text-xl" disabled :value="product.discountedPrice" />
+                <money class="font-inter font-bold text-xl bg-white" disabled :value="product.discountedPrice" />
             </div>
 
             <div>
                 <p>{{ product.description }}</p>
             </div>
 
-            <div class="flex flex-col space-y-3 bg-white z-40" v-if="quantityAvailable > 0">
+            <div class="flex flex-col space-y-3 bg-white z-40 select-none" v-if="quantityAvailable > 0">
                 <p class="text-sm">Sizes available</p>
                 <div class="flex space-x-5 bg-white z-40">
                     <div v-if="sizes[size] > 0" @click="selectSize(size)"
@@ -30,7 +36,7 @@
                 </div>
                 <transition enter-active-class="animate__animated animate__slideInLeft"
                     leave-active-class="animate__animated animate__slideOutLeft" mode="out-in">
-                    <p v-if="sizes[selectedSize] < 11">Limited stock available</p>
+                    <p v-if="sizes[selectedSize] < 11" class="select-none">Limited stock available</p>
                 </transition>
             </div>
 
@@ -40,10 +46,9 @@
                     <div @click="updateProductQuantity('-')"
                         :class="{'border-gray-400': quantity == 1, 'border-gray-700': quantity > 1}"
                         class="p-2 w-12 h-12 flex items-center justify-center uppercase border border-solid md:cursor-pointer">
-                        <icon icon="ant-design:minus-outlined" :class="{'text-gray-400': quantity == 1}"
-                            width="50" />
+                        <icon icon="ant-design:minus-outlined" :class="{'text-gray-400': quantity == 1}" width="50" />
                     </div>
-                    <p class="font-inter text-3xl"> {{quantity}} </p>
+                    <p class="font-inter text-3xl select-none"> {{quantity}} </p>
                     <div @click="updateProductQuantity('+')"
                         :class="{'border-gray-400': quantity == sizes[selectedSize], 'border-gray-700': quantity < sizes[selectedSize]}"
                         class="p-2 w-12 h-12 flex items-center justify-center uppercase border border-solid md:cursor-pointer">
@@ -53,9 +58,8 @@
                 </div>
             </transition>
 
-            <button v-if="quantityAvailable > 0"
-                @click="addToCart()"
-                class="px-4 py-3 mt-4 text-center text-white font-inter font-bold text-lg md:w-48 md:ml-auto"
+            <button v-if="quantityAvailable > 0" @click="addToCart()"
+                class="px-4 py-3 mt-4 select-none  cursor-pointer text-center text-white font-inter font-bold text-lg md:w-48 md:ml-auto"
                 :class="{'bg-gray-300': !selectedSize, 'bg-dark-grey': selectedSize}">
                 ADD TO CART
             </button>

@@ -11,12 +11,11 @@ export default {
   },
   computed: {
     isInStore() {
-      return this.$route.name == 'Store'
+      return this.$route.name == 'Store' || 'StoreMain' || 'Product'
     },
     cartSize() {
       return onlineStore.state.cartService.quantity
     }
-
   },
   mounted() {
 
