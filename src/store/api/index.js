@@ -13,6 +13,6 @@ export async function createOrder(order) {
 }
 
 export async function getNigerianStates() {
-    const response = await axios.get('http://locationsng-api.herokuapp.com/api/v1/states')
+    const response = await axios.get('https://locationsng-api.herokuapp.com/api/v1/states')
     return response.data
 }
