@@ -1,0 +1,27 @@
+<div id="order" v-if="order" class="h-80vh px-4 flex flex-col items-center justify-center">
+    <div v-if="order.status == 'paid'"
+        class="p-4 flex flex-col space-y-4 bg-dark-grey items-center text-center text-white">
+        <icon icon="cil:check" class="text-green-600" width="60" height="60" />
+        <h3 class="uppercase ">Your order has been placed successfully</h3>
+        <p class="uppercase">A receipt will be sent to your mail soon</p>
+    </div>
+    <div v-else-if="order.status == 'pending'"
+        class="p-4 flex flex-col space-y-4 bg-dark-grey items-center text-center text-white">
+        <icon icon="cil:scrubber" class="text-yellow-600" width="60" height="60" />
+        <h3 class="uppercase ">Payment for your Order is still pending</h3>
+        <button @click="pay()"
+            class="px-4 py-3 mt-4 select-none cursor-pointer text-center bg-white text-dark-grey font-inter font-bold text-lg md:px-2 md:text-sm">
+            PAY WITH PAYSTACK
+        </button>
+    </div>
+    <div v-else class="p-4 flex flex-col space-y-4 bg-dark-grey items-center text-center text-white">
+        <icon icon="cil:x" class="text-red-600" width="60" height="60" />
+        <h3 class="uppercase ">Order does not exist</h3>
+        <router-link to="/">
+            <button
+                class="px-4 py-3 mt-4 select-none cursor-pointer text-center bg-white text-dark-grey font-inter font-bold text-lg md:px-2 md:text-sm">
+                GO HOME
+            </button>
+        </router-link>
+    </div>
+</div>

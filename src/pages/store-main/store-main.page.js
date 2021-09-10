@@ -11,13 +11,12 @@ export default {
   },
   computed: {
     products() {
-        return onlineStore.state.products
+      return onlineStore.state.products
     }
 
   },
   mounted() {
     this.$store.dispatch("fetchProducts")
-
   },
   methods: {
     goToProduct(productId) {

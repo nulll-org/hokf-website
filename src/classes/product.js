@@ -2,7 +2,7 @@ export class Product {
   constructor(product, id) {
     this.id = id
     this.name = product.name;
-    this.photo = product.photo;
+    this.photo = product.photo || 'https://source.unsplash.com/featured/?shirt';
     this.type = product.type;
     this.description = product.description;
     this.price = product.price;

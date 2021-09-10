@@ -2,7 +2,6 @@ import { CartService } from "../../services/cart.service"
 import { Product } from '../../classes/product';
 import * as firebase from '../../firebase';
 import * as reponseConverterService from '../../services/response-converter.service'
-import cart from './cart'
 
 const state = {
     products: Array(),
@@ -22,22 +21,25 @@ const mutations = {
         })
     },
     setProduct: (state, product) => {
-        state.product = reponseConverterService.convertToProduct(product)
+        if (product) 
+            state.product = reponseConverterService.convertToProduct(product)
+        else 
+            state.product = product
     },
 }
 
 const actions = {
     async fetchProducts({ commit }) {
-        const products = await firebase.productCollection.get()
-        commit('setProducts', products)
+        const products = await firebase.productCollection.where("isInStock", "==", true).get()
+        commit('setProducts', products);
     },
     async fetchProduct({ commit }, productId) {
         const product = await firebase.productCollection.doc(productId).get()
-        commit('setProduct', product)
+        commit('setProduct', product);
     },
-    async placeOrder(context, order) {
-        await firebase.orderCollection.add(Object.assign({}, order));
-    },
+    async emptyProduct({commit}) {
+        commit('setProduct', null);
+    }
     // checkOut(context, order) {
     //     console.log(order)
     //     order.cartItems.forEach((cartItem) => {
@@ -53,14 +55,9 @@ const actions = {
     // }
 }
 
-const modules = {
-    cart
-}
-
 export default {
     state,
     // getters,
     mutations,
-    actions,
-    modules
+    actions
 }

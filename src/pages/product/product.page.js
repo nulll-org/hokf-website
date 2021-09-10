@@ -30,7 +30,6 @@ export default {
       }
       return _quantityAvailable
     }
-
   },
   mounted() {
     this.$store.dispatch('fetchProduct', this.$route.params.id)
@@ -60,9 +59,14 @@ export default {
       if(this.selectedSize) {
         const cartItem = new CartItem({product: this.product, size: this.selectedSize, quantity: this.quantity})
         onlineStore.state.cartService.addProductToCart(cartItem)
-        console.log(onlineStore.state.cartService.cart)
+          .then(() => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          })
       }
-
+    },
+    goBackToStore() {
+      this.$router.push({ name: 'StoreMain' });
+      this.$store.dispatch('emptyProduct')
     }
   }
 }
