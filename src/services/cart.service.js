@@ -66,7 +66,7 @@ export class CartService {
 
     async removeProductFromCart(cartItem) {
         const _cartItem = this.cart.cartItems.findIndex((_cartItem) =>
-            _cartItem.product.id == cartItem.product.id)
+            _cartItem.product.id == cartItem.product.id && _cartItem.size == cartItem.size)
 
         if (_cartItem > -1) {
             notify(`${this.cart.cartItems[_cartItem].product.name} Size - ${(this.cart.cartItems[_cartItem].size).toUpperCase()} has been removed from your cart`);
@@ -97,19 +97,19 @@ export class CartService {
                 updatedProduct
                 .then((_product) => {
                     const product = {..._product.data(), id: _product.id};
-                    if (product.isInStock) {
-                            if (cartItem.quantity > product.quantityAvailable[cartItem.size]) {
-                                newCart.cartItems.push(new CartItem({product: product, size: cartItem.size, quantity: product.quantityAvailable[cartItem.size]}))
-                            } else if (cartItem.quantity <= product.quantityAvailable[cartItem.size]) {
-                                newCart.cartItems.push(new CartItem({product: product, size: cartItem.size, quantity: cartItem.quantity}))
-                            }
-                        } else {
-                            errorNotification(`Your saved product '${cartItem.product.name}' is no longer available and has removed from your cart`)
+                    if (product.isInStock && product.quantityAvailable[cartItem.size] !== 0) {
+                        if (cartItem.quantity > product.quantityAvailable[cartItem.size]) {
+                            newCart.cartItems.push(new CartItem({product: product, size: cartItem.size, quantity: product.quantityAvailable[cartItem.size]}))
+                        } else if (cartItem.quantity <= product.quantityAvailable[cartItem.size]) {
+                            newCart.cartItems.push(new CartItem({product: product, size: cartItem.size, quantity: cartItem.quantity}))
                         }
-                    })
-                    .catch(() => {
+                    } else {
                         errorNotification(`Your saved product '${cartItem.product.name}' is no longer available and has removed from your cart`)
-                    })
+                    }
+                })
+                .catch(() => {
+                    errorNotification(`Your saved product '${cartItem.product.name}' is no longer available and has removed from your cart`)
+                })
             })
             this.cart = newCart;
         }

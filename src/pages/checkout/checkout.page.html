@@ -16,12 +16,13 @@
                     class="cartItem group w-32 h-full inline-block mr-4 cursor-pointer">
                     <div class="relative h-32 w-full">
                         <div class="absolute right-2 top-2 text-xs px-2 py-2 bg-dark-grey text-white md:px-3">
-                            {{cartItem.quantity}}x [{{(cartItem.size).toUpperCase()}}] 
+                            {{cartItem.quantity}}x [{{(cartItem.size).toUpperCase()}}]
                         </div>
                         <img class="object-center w-full h-full" :src="cartItem.product.photo" alt="">
                     </div>
                     <div class="flex flex-col text-center mt-2 p-3 w-full shadow-drop">
-                        <p class="font-bold w-auto overflow-hidden overflow-ellipsis text-sm"> {{ cartItem.product.name }}</p>
+                        <p class="font-bold w-auto overflow-hidden overflow-ellipsis text-sm"> {{ cartItem.product.name
+                            }}</p>
                         <money class="font-inter font-bold text-sm bg-none w-ful" disabled :value="cartItem.price" />
                     </div>
                 </div>
@@ -30,52 +31,24 @@
         <section id="form" class="p-4 flex flex-col space-y-6 bg-white h-full md:h-auto">
             <h3>DELIVERY DETAILS</h3>
             <div class="pb-4 w-full flex flex-col space-y-8 bg-white">
-                <div class="input flex flex-col space-y-3">
-                    <p>First Name <span class="text-red-600">*</span></p>
-                    <div class="px-4 py-3 border border-solid border-gray-700 w-full">
-                        <input v-model="firstName" name="First Name" class="font-inter w-full" type="text" placeholder="Enter your name">
-                    </div>
-                </div>
-                <div class="input flex flex-col space-y-3">
-                    <p>Last Name <span class="text-red-600">*</span></p>
-                    <div class="px-4 py-3 border border-solid border-gray-700 w-full">
-                        <input v-model="lastName" name="Last Name" class="font-inter w-full" type="text" placeholder="Enter your name">
-                    </div>
-                </div>
-                <div class="input flex flex-col space-y-3">
-                    <p>Email <span class="text-red-600">*</span></p>
-                    <div class="px-4 py-3 border border-solid border-gray-700 w-full">
-                        <input v-model="email" class="font-inter w-full" type="email" placeholder="Enter your email">
-                    </div>
-                </div>
-                <div class="input flex flex-col space-y-3">
-                    <p>Phone Number <span class="text-red-600">*</span></p>
-                    <div class="px-4 py-3 border border-solid border-gray-700 w-full">
-                        <input v-model="phoneNumber" class="font-inter w-full" type="tel" placeholder="e.g +2348080990989">
-                    </div>
-                </div>
-                <div class="input flex flex-col space-y-3">
-                    <p>Address Line 1 <span class="text-red-600">*</span></p>
-                    <div class="px-4 py-3 border border-solid border-gray-700 w-full">
-                        <input v-model="addressLine1" class="font-inter w-full" type="text">
-                    </div>
-                </div>
-                <div class="input flex flex-col space-y-3">
-                    <p>Address Line 2</p>
-                    <div class="px-4 py-3 border border-solid border-gray-700 w-full">
-                        <input v-model="addressLine2" class="font-inter w-full" type="text">
-                    </div>
-                </div>
-                <div class="input flex flex-col space-y-3">
-                    <p>City <span class="text-red-600">*</span></p>
-                    <div class="px-4 py-3 border border-solid border-gray-700 w-full h-full">
-                        <input v-model="city" name="City" class="font-inter w-full" type="text">
-                    </div>
-                </div>
+                <Input :label="'First Name'" :modelValue="orderFormGroup" :field="'firstName'" :placeholder="'Enter your First name'"
+                    :type="'text'" />
+                <Input :label="'Last Name'" :modelValue="orderFormGroup" :field="'lastName'" :placeholder="'Enter your Last name'"
+                    :type="'text'" />
+                <Input :label="'Email'" :modelValue="orderFormGroup" :field="'email'" :placeholder="'Enter your email'"
+                    :type="'email'" />
+                <Input :label="'Phone'" :modelValue="orderFormGroup" :field="'phoneNumber'" :placeholder="'e.g +2348080990989'"
+                    :type="'tel'" />
+                <Input :label="'Address Line 1'" :modelValue="orderFormGroup" :field="'addressLine1'" :placeholder="'Street Address'"
+                    :type="'text'" />
+                <Input :label="'Address Line 2'" :modelValue="orderFormGroup" :field="'addressLine2'" :placeholder="''"
+                    :type="'text'" :optional="true" />
+                <Input :label="'City'" :modelValue="orderFormGroup" :field="'city'" :placeholder="'City'"
+                    :type="'text'" />
                 <div class="input flex flex-col space-y-3">
                     <p>State <span class="text-red-600">*</span></p>
                     <div class="px-4 py-3 border border-solid border-gray-700 w-full h-full">
-                        <select class="font-inter w-full" v-model="state" name="State" type="text">
+                        <select class="font-inter w-full" v-model="orderFormGroup.props.state" name="State" type="text">
                             <option :value="state" v-for="state in states" :key="state">
                                 {{state}}
                             </option>
@@ -85,7 +58,8 @@
             </div>
         </section>
     </div>
-    <section id="total" class="sticky top-1 p-4 mb-4 flex-col flex items-center bg-white h-full md:w-1/3">
+    <section id="total" v-if="cartItems.length > 0"
+        class="sticky top-1 p-4 mb-4 flex-col flex items-center bg-white h-full md:w-1/3">
         <h2 class="hidden md:block self-start">TOTAL</h2>
         <div class="flex w-full items-center space-x-4 justify-between md:justify-end">
             <h3 class="ml-auto md:text-lg md:hidden">TOTAL</h3>

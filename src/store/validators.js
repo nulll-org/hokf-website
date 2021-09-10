@@ -1,4 +1,4 @@
-import { required, email, pattern } from "@rxweb/reactive-forms";
+import { required, email, pattern, alphaNumeric } from "@rxweb/reactive-forms";
 
 export class OrderValidator {
     @required()
@@ -18,7 +18,7 @@ export class OrderValidator {
     @required()
     addressLine1
 
-    @required()
+    @alphaNumeric({message: 'Address Line 2 must not contain any special characters'})
     addressLine2
 
     @required()
@@ -26,8 +26,4 @@ export class OrderValidator {
 
     @required()
     state
-
-    @required()
-    state
-    
 }

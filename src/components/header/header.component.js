@@ -24,6 +24,5 @@ export default {
     toggleNav() {
       this.isNavOpen = !this.isNavOpen
     }
-
   }
 }

@@ -7,9 +7,19 @@ export async function getAllProducts() {
     return products
 }
 
+export async function getOrder(id) {
+    const order = await firebase.orderCollection.doc(id)
+    return (await order.get());
+}
+
+export async function getRelatedCartIems(orderId) {
+    const cartItems = await firebase.cartItemCollection.where("orderId", "==", orderId)
+    return (await cartItems.get()).docs
+}
+
 export async function createOrder(order) {
     const response = await httpService.post('https://us-central1-house-of-kits-and-fits.cloudfunctions.net/checkOut', order)
-    return response
+    return response.data
 }
 
 export async function getNigerianStates() {

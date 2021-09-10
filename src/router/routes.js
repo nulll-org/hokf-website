@@ -1,11 +1,12 @@
 import Home from '@/pages/home/index.vue';
 import Cart from '@/pages/cart/index.vue';
+import Order from '@/pages/order/index.vue';
+import About from '@/pages/about/index.vue';
 import Store from '@/pages/store/index.vue';
 import Product from '@/pages/product/index.vue';
-import StoreMain from '@/pages/store-main/index.vue';
-import About from '@/pages/about/index.vue';
-import Reservation from '@/pages/reservation/index.vue';
 import Checkout from '@/pages/checkout/index.vue';
+import StoreMain from '@/pages/store-main/index.vue';
+import Reservation from '@/pages/reservation/index.vue';
 // import Tournaments from '@/pages/tournaments/index.vue';
 
 const routes = [
@@ -17,6 +18,7 @@ const routes = [
   { path: '/store/main', name: 'StoreMain', component: StoreMain },
   // { path: '/tournaments', name: 'Tournaments', component: Tournaments },
   { path: '/reservation', name: 'Reservation', component: Reservation },
+  { path: '/order/:id', name: 'Order', component: Order, meta: { props: true } },
   { path: '/store/products/:id', name: 'Product', component: Product, meta: { props: true } },
 ]
 

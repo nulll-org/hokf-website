@@ -1,21 +1,27 @@
 import { createOrder, getNigerianStates } from "../../store/api"
 import onlineStore from "../../store/modules/online-store";
+import { RxFormBuilder } from "@rxweb/reactive-forms";
+import { OrderValidator } from "../../store/validators";
+import { errorNotification } from "../../services/notification.service";
 
 export default {
   name: 'Checkout',
   components: {},
   props: [],
+  beforeRouteEnter(to, from, next) {
+    if (onlineStore.state.cartService.cart.cartItems.length < 1) {
+      next({name: from.name || 'Home'})
+    } else {
+      next()
+    }
+  },
   data() {
+    const formBuilder = new RxFormBuilder();
+    const orderFormGroup = formBuilder.formGroup(OrderValidator);
+
     return {
     states: [],
-    firstName: null,
-    lastName: null,
-    email: null,
-    phoneNumber: null,
-    addressLine1: null,
-    addressLine2: null,
-    city: null,
-    state: null,
+    orderFormGroup,
     country: 'Nigeria'
     }
   },
@@ -37,27 +43,32 @@ export default {
   },
   methods: {
     async checkOut() {
-      let _cartItems = []
-      this.cartItems.forEach((cartItem) => {
-        _cartItems.push({productId: cartItem.product.id, quantity: cartItem.quantity, size: cartItem.size})
-      })
-      const order = {
-        customer: {
-          firstName: this.firstName,
-          lastName: this.lastName,
-          email: this.email,
-          phoneNumber: this.phoneNumber,
-        },
-        cartItems: _cartItems,
-        addressLine1: this.addressLine1,
-        addressLine2: this.addressLine2,
-        city: this.city,
-        state: this.state,
-        country: this.country,
+      if (this.orderFormGroup.valid) {
+        let _cartItems = []
+        this.cartItems.forEach((cartItem) => {
+          _cartItems.push({productId: cartItem.product.id, quantity: cartItem.quantity, size: cartItem.size})
+        })
+        const order = {
+          order : {
+            customer: {
+              firstName: this.orderFormGroup.value.firstName,
+              lastName: this.orderFormGroup.value.lastName,
+              email: this.orderFormGroup.value.email,
+              phoneNumber: this.orderFormGroup.value.phoneNumber,
+            },
+            cartItems: _cartItems,
+            addressLine1: this.orderFormGroup.value.addressLine1,
+            addressLine2: this.orderFormGroup.value.addressLine2,
+            city: this.orderFormGroup.value.city,
+            state: this.orderFormGroup.value.state,
+            country: this.country,
+          }
+        }
+        const response = await createOrder(order);
+        window.location.replace(response.authorization_url);
+      } else {
+        errorNotification('Please fill all required fields. We need the info to deliver to you :)')
       }
-      const response = await createOrder(order)
-      console.log(response)
     }
-
   }
 }
