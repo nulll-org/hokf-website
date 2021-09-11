@@ -64,8 +64,12 @@ export default {
             country: this.country,
           }
         }
-        const response = await createOrder(order);
-        window.location.replace(response.authorization_url);
+        const response = await createOrder(order)
+        .then(() => {
+          window.location.replace(response.authorization_url);
+        }).catch(() => {
+          errorNotification('Your Order could not be placed at this time. Please Try again later')
+        });
       } else {
         errorNotification('Please fill all required fields. We need the info to deliver to you :)')
       }

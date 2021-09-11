@@ -1,0 +1,8 @@
+<div class="input flex flex-col space-y-3">
+  <p>{{ label }} <span class="text-red-600" v-if="!optional">*</span></p>
+  <select class="px-4 py-3 border border-solid border-gray-700" v-model="modelValue.props[field]">
+    <option :value="option" v-for="option in options">{{option}}</option>
+  </select>
+  <small class="text-red-600 mt-2 font-inter font-bold"
+    v-if="modelValue.controls[field].dirty">{{modelValue.controls[field].errorMessage}}</small>
+</div>

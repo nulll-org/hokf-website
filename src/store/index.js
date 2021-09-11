@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import auth from './modules/auth'
-import bookings from './modules/bookings'
+import bookings from './modules/reservation'
 import tournaments from './modules/tournaments'
 import onlineStore from './modules/online-store'
 

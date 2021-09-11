@@ -79,7 +79,8 @@ export class CartService {
     }
 
     clearCart() {
-        localStorage.removeItem('HOKF-cart')
+        this.cart = Cart.createEmpty();
+        localStorage.removeItem('HOKF-cart');
     }
 
     async getProduct(productId) {

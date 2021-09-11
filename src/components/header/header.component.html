@@ -12,6 +12,9 @@
             <!-- <img @click="isNavOpen = false" class="object-cover" src="../../assets/logo.jpg" alt="HOKF Logo"> -->
         </router-link>
         <div class="hidden md:flex md:space-x-6">
+            <router-link to="/">
+                <p class="font-inter">Home</p>
+            </router-link>
             <router-link to="/about">
                 <p class="font-inter">About</p>
             </router-link>
@@ -21,9 +24,9 @@
             <router-link to="/reservation">
                 <p class="font-inter font-bold">Make a Reservation!</p>
             </router-link>
-            <router-link to="/services">
+            <!-- <router-link to="/services">
                 <p class="font-inter">Services</p>
-            </router-link>
+            </router-link> -->
             <router-link to="/about#contact-us">
                 <p class="font-inter">Contact Us</p>
             </router-link>
@@ -50,6 +53,9 @@
         leave-active-class="animate__animated animate__slideOutUp">
         <div class="p-8 top-20 flex flex-col space-y-4 text-right w-full absolute bg-white md:hidden "
             v-if="isNavOpen">
+            <router-link to="/">
+                <p @click="toggleNav()" class="font-inter text-xl">Home</p>
+            </router-link>
             <router-link to="/about">
                 <p @click="toggleNav()" class="font-inter text-xl">About</p>
             </router-link>
@@ -59,9 +65,9 @@
             <router-link to="/reservation">
                 <p @click="toggleNav()" class="font-inter font-bold text-xl">Make a Reservation!</p>
             </router-link>
-            <router-link to="/services">
+            <!-- <router-link to="/services">
                 <p @click="toggleNav()" class="font-inter text-xl">Services</p>
-            </router-link>
+            </router-link> -->
             <router-link to="/about#contact-us">
                 <p @click="toggleNav()" class="font-inter text-xl">Contact Us</p>
             </router-link>

@@ -1,11 +1,7 @@
 <section id="store-main">
-
-    <section id="header">
-
-    </section>
     <section id="landing" class="px-7 flex flex-col w-full min-h-70vh md:px-16">
         <div class="products my-8 flex flex-wrap whitespace-nowrap justify-between md:justify-start md:gap-x-9 lg:gap-x-10">
-            <div v-for="product in products" :key="product.id" @click="goToProduct(product.id)"
+            <div data-aos="fade-up" v-for="product in products" :key="product.id" @click="goToProduct(product.id)"
                 class="product group flex flex-col space-y-4 mb-4 w-48% md:cursor-pointer md:w-30% lg:mb-6 lg:w-22%">
                 <div class="w-full h-56 md:h-72 lg:h-96 relative">
                     <div class="absolute right-2 top-2 text-sm px-3 py-2 bg-dark-grey text-white md:px-3"

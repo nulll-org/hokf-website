@@ -1,15 +1,21 @@
 <div id="cart"
     class="h-full pt-4 flex flex-col space-y-4 bg-gray-200 md:px-6 md:pb-6 md:flex-row md:space-y-0 md:space-x-4 md:min-h-70vh lg:px-40 xl:px-64">
     <div class="md:w-2/3">
-        <section id="header" class="p-4 mb-4 bg-white h-full md:h-auto">
+        <section id="header" data-aos="fade-up" data-aos-delay="50" data-aos-easing="ease-in-out"
+            class="p-4 mb-2 bg-white h-full md:h-auto">
             <div class="flex w-full items-end justify-between">
-                <router-link to="/store/main" class="cursor-pointer">
-                    <p class="hover:underline cursor-pointer"> Go back to store </p>
+                <router-link to="/store/main" class="flex items-center cursor-pointer">
+                    <icon icon="ic:baseline-arrow-back" class="text-dark-grey" />
+                    <p class="hover:underline cursor-pointer ml-2"> Go back to store </p>
                 </router-link>
                 <h3>YOUR CART</h3>
             </div>
         </section>
-        <section id="cartItems" class="p-4 flex flex-col space-y-6 bg-white h-full md:h-auto">
+        <section class="px-4 mb-2 flex"  data-aos="fade-up" data-aos-delay="50" data-aos-easing="ease-in-out">
+            <p @click="emptyCart()" v-if="cartItems.length > 0" class="ml-auto cursor-pointer font-bold">Empty Cart</p>
+        </section>
+        <section id="cartItems" class="p-4 flex flex-col space-y-6 bg-white h-full md:h-auto" data-aos="fade-up"
+            data-aos-delay="150" data-aos-easing="ease-in-out">
             <div v-for="cartItem in cartItems" :key="cartItem.product.id + cartItem.size">
                 <div class="flex w-full space-x-6">
                     <div class="w-1/3 h-40 relative">
@@ -76,8 +82,9 @@
             </div>
         </section>
     </div>
-    <section id="total" v-if="cartItems.length > 0"
-        class="p-4 mb-4 flex-col flex items-center bg-white h-full md:w-1/3">
+    <section v-if="cartItems.length > 0"
+        class="p-4 mb-4 flex-col flex items-center bg-white h-full md:w-1/3" data-aos="fade-up" data-aos-delay="250"
+        data-aos-easing="ease-in-out" id="total">
         <h2 class="hidden md:block self-start">TOTAL</h2>
         <div class="flex w-full items-center space-x-4 justify-between md:justify-end">
             <h3 class="ml-auto md:text-lg md:hidden">TOTAL</h3>

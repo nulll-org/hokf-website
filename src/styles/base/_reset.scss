@@ -11,16 +11,16 @@ html {
 
 * {
     &::-webkit-scrollbar {
-        width: 8px;
+        width: 7px;
     }
 
     // &::-webkit-scrollbar-track {
     //     background: $grey;
     // }
 
-    // &::-webkit-scrollbar-thumb {
-    //     background-color: $cyan;
-    // }
+    &::-webkit-scrollbar-thumb {
+        background-color: #0B0D17;
+    }
 }
 
 body,

@@ -37,7 +37,9 @@ export default {
         cartItem.quantity = quantityAvailable
       }
       onlineStore.state.cartService.updateProductQuantity(cartItem);
+    },
+    emptyCart() {
+      onlineStore.state.cartService.clearCart()
     }
-
   }
 }

@@ -1,66 +1,55 @@
-<div id="reservation">
+<div id="reservation" class="bg-dark-grey">
     <section id="landing" class=" bg-cover h-full ">
-        <div class="lg:flex lg:px-32">
-            <div class="flex flex-col items-center text-center justify-center h-full px-8 pt-16 py-8 space-y-4 md:px-32 lg:w-1/2 lg:absolute lg:top-5 lg:right-0">
+        <div class="lg:flex lg:px-32" v-if="!reservationMade">
+            <div
+                class="flex flex-col items-center text-center justify-center text-white h-full px-8 pt-16 py-8 space-y-4 md:px-32 lg:w-1/2 lg:absolute lg:top-5 lg:right-0">
                 <h1 class="font-extrabold lg:text-7xl">MAKE YOUR RESERVATION</h1>
-                <p class="text-xl">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit facilis atque mollitia rerum
+                <p class="text-xl">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit facilis atque mollitia
+                    rerum
                     qui repellendus!</p>
             </div>
-            <div class="form px-8 py-8 md:px-32 lg:px-0 xl:px-8 lg:w-1/2">
+            <div class="form px-8 py-8 md:px-32 lg:px-0 xl:px-8 lg:w-1/2" data-aos="fade-up">
                 <div class="relative p-8 w-full flex flex-col space-y-8 bg-white">
-                    <div class="input flex flex-col space-y-3">
-                        <p>Name <span class="text-red-600">*</span></p>
-                        <div class="px-4 py-3 border border-solid border-gray-700 w-full">
-                            <input class="font-inter w-full" type="text" placeholder="Enter your name">
-                        </div>
-                    </div>
-                    <div class="input flex flex-col space-y-3">
-                        <p>Email <span class="text-red-600">*</span></p>
-                        <div class="px-4 py-3 border border-solid border-gray-700 w-full">
-                            <input class="font-inter w-full" type="email" placeholder="Enter your email">
-                        </div>
-                    </div>
-                    <div class="input flex flex-col space-y-3">
-                        <p>Phone Number <span class="text-red-600">*</span></p>
-                        <div class="px-4 py-3 border border-solid border-gray-700 w-full">
-                            <input class="font-inter w-full" type="text" placeholder="e.g +2348080990989">
-                        </div>
-                    </div>
-                    <div class="input flex flex-col space-y-3">
-                        <p>Date <span class="text-red-600">*</span></p>
-                        <div class="px-4 py-3 border border-solid border-gray-700 w-full">
-                            <input class="font-inter w-full" type="date">
-                        </div>
-                    </div>
-                    <div class="input flex flex-col space-y-3">
-                        <p>Time <span class="text-red-600">*</span></p>
-                        <div class="px-4 py-3 flex flex-col space-y-4 border border-solid border-gray-700 w-full">
-                            <label class="flex custom-radio lg:cursor-pointer" for="1">
-                                <input type="radio" name="timeSlot" id="1">
-                                <span class="radio lg:cursor-pointer"></span>
-                                <p class="text-lg">09:00 AM - 10:00 AM</p>
-                            </label>
-                            <label class="flex custom-radio lg:cursor-pointer" for="2">
-                                <input type="radio" name="timeSlot" id="2">
-                                <span class="radio lg:cursor-pointer"></span>
-                                <p class="text-lg">09:00 AM - 10:00 AM</p>
-                            </label>
-                            <label class="flex custom-radio lg:cursor-pointer " for="3">
-                                <input type="radio" name="timeSlot" id="3">
-                                <span class="radio lg:cursor-pointer"></span>
-                                <p class="text-lg">09:00 AM - 10:00 AM</p>
-                            </label>
-                        </div>
-                    </div>
+                    <Input :label="'Name'" :modelValue="reservationFormGroup" :field="'name'"
+                        :placeholder="'Enter your name'" :type="'text'" />
+                    <Input :label="'Email'" :modelValue="reservationFormGroup" :field="'email'"
+                        :placeholder="'Enter your email'" :type="'email'" />
+                    <Input :label="'Phone Number'" :modelValue="reservationFormGroup" :field="'phoneNumber'"
+                        :placeholder="'e.g +2348080990989'" :type="'tel'" />
+                    <Dropdown :label="'Where would you like to reserve?'" :modelValue="reservationFormGroup"
+                        :field="'area'" :placeholder="'How long'" :type="'number'" :options="areas" />
+                    <Input :label="'Date'" :modelValue="reservationFormGroup" :field="'date'" :type="'date'" />
+                    <Input :label="'Time'" :modelValue="reservationFormGroup" :field="'time'" :type="'time'" />
+                    <Dropdown :label="'Duration'" :modelValue="reservationFormGroup" :field="'duration'"
+                        :placeholder="'How long'" :type="'number'" :options="duration" />
                     <div class="input flex flex-col space-y-3">
                         <p>Special Request</p>
                         <div class="px-4 py-3 border border-solid border-gray-700 w-full h-full">
-                            <textarea class="font-inter w-full h-full" type="text" placeholder="Shoot!"></textarea>
+                            <textarea class="font-inter w-full h-full" v-model="reservationFormGroup.props.request" type="text"
+                                placeholder="What else can we do to help?"></textarea>
                         </div>
+                        <small class="text-red-600 mt-2 font-inter font-bold"
+                          v-if="reservationFormGroup.controls.request.dirty">{{reservationFormGroup.controls.request.errorMessage}}</small>
                     </div>
-                    <button class="px-4 cursor-pointer py-3 text-center text-white font-inter font-bold text-lg bg-dark-grey">
+                    <button @click="makeReservation()"
+                        class="px-4 cursor-pointer py-3 text-center text-white font-inter font-bold text-lg bg-dark-grey">
                         Submit
                     </button>
+                </div>
+            </div>
+        </div>
+        <div v-else class="h-80vh px-4 flex flex-col items-center justify-center">
+            <div class="p-8 bg-dark-grey text-white md:w-3/5 lg:w-2/5">
+                <div class="flex flex-col space-y-4 items-center text-center">
+                    <icon icon="cil:check" class="text-green-600" width="60" height="60" />
+                    <h3 class="uppercase ">Your reservation has been made</h3>
+                    <p class="uppercase">We will get back to you to confirm availabilty</p>
+                    <router-link to="/">
+                        <button
+                            class="px-4 py-3 mt-4 select-none cursor-pointer text-center bg-white text-dark-grey font-inter font-bold text-lg md:px-2 md:text-sm">
+                            GO HOME
+                        </button>
+                    </router-link>
                 </div>
             </div>
         </div>

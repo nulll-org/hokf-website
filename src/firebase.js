@@ -18,6 +18,9 @@ const timeStamp = firebase.firestore.Timestamp.fromDate(new Date());
 const productCollection = firebaseApp.firestore().collection('products')
 const orderCollection = firebaseApp.firestore().collection('orders')
 const cartItemCollection = firebaseApp.firestore().collection('cartItems')
+const reservationCollection = firebaseApp.firestore().collection('reservations')
+const queryCollection = firebaseApp.firestore().collection('queries')
+const mail = firebaseApp.firestore().collection('mail')
 
-export { timeStamp, productCollection, orderCollection, cartItemCollection }
+export { timeStamp, productCollection, orderCollection, cartItemCollection, reservationCollection, queryCollection, mail }
 export default firebaseApp.firestore()
