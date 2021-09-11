@@ -35,7 +35,7 @@
             <div class="hidden lg:flex lg:ml-auto" v-if="isInStore">
                 <div class="pr-4 py-2 flex items-center space-x-3 border-b border-solid border-gray-700 w-full">
                     <icon icon="clarity:search-line" width="14" height="14" />
-                    <input class="font-inter w-full text-sm" type="email" placeholder="Search store">
+                    <input class="font-inter w-full text-sm" type="text" v-model="query" @input="searchStore()" placeholder="Search store">
                 </div>
             </div>
             <router-link to="/cart" class="relative hidden md:block ml-2">

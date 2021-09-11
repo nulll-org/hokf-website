@@ -10,6 +10,40 @@ export function sendMail (receipient, content) {
     })
 }
 
+export function sendTemplateMail (receipient, name, data) {
+    mail.add({
+        to: receipient,
+        template: {
+            name: name,
+            data: data
+        }
+    })
+}
+
+export function sendOrderMail (receipient, content) {
+    mail.add({
+        to: receipient,
+        template: {
+            name: 'NewOrder',
+            data: {
+                cartItems: content.cartItems,
+                price: content.order.price,
+                firstName: content.firstName,
+                lastName: content.lastName,
+                addressLine1: content.addressLine1,
+                addressLine2: content.addressLine2,
+                city: content.city,
+                state: content.state,
+                country: content.country,
+            }
+        }
+    })
+}
+
 export function sendMailToAdmin(content) {
     sendMail('info@hokfgardens.com', content);
+}
+
+export function sendTemplateMailToAdmin(name, data) {
+    sendTemplateMail('info@hokfgardens.com', name, data);
 }

@@ -37,11 +37,8 @@ export default {
   methods: {
     selectSize(size) {
       this.selectedSize = size;
-      if (this.quantity == 0) {
-        this.updateProductQuantity('+')
-      } else {
-        this.updateProductQuantity()
-      }
+      this.updateProductQuantity('+')
+      this.quantity = 1
     },
     updateProductQuantity(operator) {
       const quantityAvailable = this.sizes[this.selectedSize]

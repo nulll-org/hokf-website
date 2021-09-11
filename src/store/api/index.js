@@ -1,10 +1,15 @@
 import * as firebase from '../../firebase';
 import axios from 'axios'
 import { httpService } from '../../services/http.service';
-import { sendMailToAdmin } from '../../services/mail.service';
+import { sendTemplateMailToAdmin } from '../../services/mail.service';
 
 export async function getAllProducts() {
     const products = await firebase.productCollection.get()
+    return products
+}
+
+export async function searchProduct(query) {
+    const products = await firebase.productCollection.where("name", "array-contains-any", query)
     return products
 }
 
@@ -24,27 +29,21 @@ export async function createOrder(order) {
 }
 
 export async function newReservation(reservation) {
-    console.log(reservation)
     const response = await firebase.reservationCollection.add(Object.assign({}, reservation));
     const _reservation = (await (await response.get()).data());
     const dateTime = new Date(`${_reservation.date}, ${_reservation.time}`)
     const date = dateTime.toLocaleDateString('en-us', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})
     const time = dateTime.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
-    const content = {
-        message: `<p>${_reservation.name} has booked the ${_reservation.area} for ${_reservation.duration} on ${date} from ${time}`,
-        subject: 'New Reservation'}
-    sendMailToAdmin(content)
+    const data = {..._reservation, date: date, time: time}
+    sendTemplateMailToAdmin('newBooking', data)
     return response
 }
 
 export async function newQuery(query) {
-    console.log(query)
     const response = await firebase.queryCollection.add(Object.assign({}, query));
     const _query = (await (await response.get()).data());
-    const content = {
-        message: `<p>${_query.name} has made a new query</p> <h3>Message</h3> <p>${_query.message}</p>`,
-        subject: 'New Query'}
-    sendMailToAdmin(content)
+    const data = {..._query};
+    sendTemplateMailToAdmin('newQuery', data)
     return response
 }
 

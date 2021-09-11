@@ -31,6 +31,7 @@ export default {
         const request = this.reservationFormGroup.props.request ? this.reservationFormGroup.value.request : ''
         await newReservation({...this.reservationFormGroup.value, request: request})
         .then(() => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
           this.reservationMade = true;
         }).catch(() => {
           errorNotification('There was an issue making your reservation. Please try again later')

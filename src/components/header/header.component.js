@@ -6,12 +6,14 @@ export default {
   props: [],
   data() {
     return {
-      isNavOpen: false
+      isNavOpen: false,
+      query: ''
     }
   },
   computed: {
     isInStore() {
-      return this.$route.name == 'Store' || 'StoreMain' || 'Product'
+      // return this.$route.name == 'StoreMain' ? true : false
+      return false
     },
     cartSize() {
       return onlineStore.state.cartService.quantity
@@ -23,6 +25,14 @@ export default {
   methods: {
     toggleNav() {
       this.isNavOpen = !this.isNavOpen
+    },
+    searchStore() {
+      if (this.query.length > 2) {
+        console.log(this.query)
+        this.$store.dispatch('searchForProducts', this.query)
+      } else {
+        this.$store.dispatch("fetchProducts")
+      }
     }
   }
 }

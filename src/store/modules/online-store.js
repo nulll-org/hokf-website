@@ -2,16 +2,13 @@ import { CartService } from "../../services/cart.service"
 import { Product } from '../../classes/product';
 import * as firebase from '../../firebase';
 import * as reponseConverterService from '../../services/response-converter.service'
+import { searchProduct } from "../api";
 
 const state = {
     products: Array(),
     product: Product,
     cartService: new CartService()
 }
-
-// const getters = {
-//     products: state => state.products
-// }
 
 const mutations = {
     setProducts: (state, products) => {
@@ -33,6 +30,10 @@ const actions = {
         const products = await firebase.productCollection.where("isInStock", "==", true).get()
         commit('setProducts', products);
     },
+    async searchForProducts({ commit }, query) {
+        const products = await (await searchProduct(query)).get()
+        commit('setProducts', products);
+    },
     async fetchProduct({ commit }, productId) {
         const product = await firebase.productCollection.doc(productId).get()
         commit('setProduct', product);
@@ -40,24 +41,10 @@ const actions = {
     async emptyProduct({commit}) {
         commit('setProduct', null);
     }
-    // checkOut(context, order) {
-    //     console.log(order)
-    //     order.cartItems.forEach((cartItem) => {
-    //         firebase.inventoryCollection.get().then((inventory) => {
-    //             inventory.forEach((doc) => {
-    //                 if(doc.data().product.id === cartItem.product.id) {
-    //                     firebase.inventoryCollection.doc(doc.id).update
-    //                 }
-    //             })
-    //         })
-    //     })
-    //     // firebase.orderCollection.doc().set(Object.assign({}, order))
-    // }
 }
 
 export default {
     state,
-    // getters,
     mutations,
     actions
 }
