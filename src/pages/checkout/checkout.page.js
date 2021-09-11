@@ -3,6 +3,7 @@ import onlineStore from "../../store/modules/online-store";
 import { RxFormBuilder } from "@rxweb/reactive-forms";
 import { OrderValidator } from "../../store/validators";
 import { errorNotification } from "../../services/notification.service";
+import loading from "../../store/modules/loading";
 
 export default {
   name: 'Checkout',
@@ -31,6 +32,9 @@ export default {
     },
     total() {
       return onlineStore.state.cartService.totalCost;
+    },
+    loading() {
+      return loading.state.loading;
     }
   },
   mounted() {
@@ -64,12 +68,12 @@ export default {
             country: this.country,
           }
         }
-        const response = await createOrder(order)
-        .then(() => {
+        await createOrder(order)
+        .then((response) => {
           window.location.replace(response.authorization_url);
         }).catch(() => {
-          errorNotification('Your Order could not be placed at this time. Please Try again later')
-        });
+          errorNotification('Your Order could not be placed right now. Please try gaian later.')
+        })
       } else {
         errorNotification('Please fill all required fields. We need the info to deliver to you :)')
       }
