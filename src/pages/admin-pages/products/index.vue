@@ -308,8 +308,8 @@
             UPDATE
           </button>
         </div>
-      </div></Modal
-    >
+      </div>
+    </Modal>
   </div>
 </template>
 <script src="./products.page.js"></script>

@@ -23,31 +23,38 @@ export default {
         return onlineStore.state.allOrders;
       }
     },
+    relatedCartItems() {
+      return onlineStore.state.relatedCartItems
+    }
   },
   mounted() {
     this.$store.dispatch("fetchAllOrders");
   },
   methods: {
     openModal(order) {
-      this.isModalOpen = true;
       this.$store
         .dispatch("fetchRelatedCartItems", order.id)
-        .then((cartItems) => this.modalData = { ...order, cartItems: cartItems });
+        .then(() => {
+          this.modalData = { ...order };
+          this.isModalOpen = true;
+        });
     },
     closeModal() {
       this.isModalOpen = false;
+      this.clearOrderState();
     },
     localDate(date) {
-      return date
-        .toDate()
-        .toLocaleDateString("en-US", {
-          month: "short",
-          day: "2-digit",
-          year: "numeric",
-        });
+      return date.toDate().toLocaleDateString("en-US", {
+        month: "short",
+        day: "2-digit",
+        year: "numeric",
+      });
     },
     display(query) {
       this.show = query;
+    },
+    clearOrderState() {
+      this.modalData = null;
     },
   },
 };

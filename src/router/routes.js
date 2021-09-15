@@ -9,6 +9,7 @@ import StoreMain from '@/pages/store-main/index.vue';
 import Reservation from '@/pages/reservation/index.vue';
 import Admin from '@/pages/admin-pages/admin/index.vue';
 import Orders from '@/pages/admin-pages/orders/index.vue';
+import Queries from '@/pages/admin-pages/queries/index.vue';
 import Products from '@/pages/admin-pages/products/index.vue';
 import Overview from '@/pages/admin-pages/overview/index.vue';
 
@@ -23,7 +24,7 @@ const routes = [
       { path: 'products', name: 'Products', component: Products, meta: { isAdmin: true, requiresAuth: true }},
       { path: 'orders', name: 'Orders', component: Orders, meta: { isAdmin: true, requiresAuth: true }},
       // { path: 'bookings', name: 'Bookings', component: Bookings, meta: { isAdmin: true, requiresAuth: true }},
-      // { path: 'queries', name: 'Queries', component: Queries, meta: { isAdmin: true, requiresAuth: true }},
+      { path: 'queries', name: 'Queries', component: Queries, meta: { isAdmin: true, requiresAuth: true }},
       { path: '*', name: 'Admin 404', component: Products, meta: { isAdmin: true, requiresAuth: true }},
     ],
     meta: { isAdmin: true, requiresAuth: true }

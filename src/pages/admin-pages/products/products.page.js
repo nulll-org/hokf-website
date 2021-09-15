@@ -9,6 +9,7 @@ import Modal from "../../../components/modal/index.vue";
 import { RxFormBuilder } from "@rxweb/reactive-forms";
 import { ProductValidator } from "../../../store/validators";
 import { httpService } from "../../../services/http.service";
+import { errorNotification } from "../../../services/notification.service";
 
 export default {
   name: "Product",
@@ -58,6 +59,8 @@ export default {
         .then((response) => {
           this.productFormGroup.props.photo = response.data.secure_url;
           this.previewImage = URL.createObjectURL(image);
+        }).catch(() => {
+          errorNotification('There was a problem uploading the image. Please try again.')
         });
     },
     async submitCreate() {

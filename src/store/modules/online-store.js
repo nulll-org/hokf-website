@@ -10,6 +10,7 @@ const state = {
     archivedProducts: Array(),
     allOrders: Array(),
     allCartItems: Array(),
+    relatedCartItems: Array(),
     product: Product,
     cartService: new CartService()
 }
@@ -52,6 +53,12 @@ const mutations = {
             state.allCartItems.push(reponseConverterService.convertToCartItem(cartItem))
         })
     },
+    setRelatedCartItems: (state, cartItems) => {
+        state.relatedCartItems = []
+        cartItems.forEach(cartItem => {
+            state.relatedCartItems.push(reponseConverterService.convertToCartItem(cartItem))
+        })
+    },
     setProduct: (state, product) => {
         if (product) 
             state.product = reponseConverterService.convertToProduct(product)
@@ -85,13 +92,9 @@ const actions = {
         const cartItems = await getAllCartItems()
         commit('setAllCartItems', cartItems);
     },
-    async fetchRelatedCartItems(context, id) {
-        const _cartItems = []
+    async fetchRelatedCartItems({commit}, id) {
         const cartItems = await getRelatedCartIems(id)
-        cartItems.forEach(cartItem => {
-            _cartItems.push(reponseConverterService.convertToCartItem(cartItem))
-        })
-        return _cartItems
+        commit('setRelatedCartItems', cartItems);
     },
     async searchForProducts({ commit }, query) {
         const products = await (await searchProduct(query)).get()

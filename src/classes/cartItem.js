@@ -1,9 +1,11 @@
 import { Product } from "./product";
 
 export class CartItem {
-  constructor(cartItem) {
+  constructor(cartItem, id) {
     if (cartItem.orderId) {
-      this.orderId = cartItem.orderId
+      this.id = id;
+      this.orderId = cartItem.orderId;
+      this.product = null;
       cartItem.product.get().then((_product) => {
         this.product = new Product(_product.data(), cartItem.product.id);
       })

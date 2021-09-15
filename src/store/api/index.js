@@ -69,6 +69,11 @@ export async function getAllBookings() {
     return bookings;
 }
 
+export async function getAllQueries() {
+    const queries = await firebase.queryCollection.get()
+    return queries;
+}
+
 export async function getRelatedCartIems(orderId) {
     const cartItems = await firebase.cartItemCollection.where("orderId", "==", orderId)
     return (await cartItems.get()).docs
