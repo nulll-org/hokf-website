@@ -4,8 +4,8 @@ import Footer from "./components/footer/index.vue"
 export default {
     name: 'App',
     components: {
-        Header,
-        Footer
+      Header,
+      Footer
     },
     props: [],
     data() {
@@ -14,7 +14,9 @@ export default {
       }
     },
     computed: {
-  
+      adminRoute() {
+        return this.$route.meta.isAdmin
+      }
     },
     mounted() {
   

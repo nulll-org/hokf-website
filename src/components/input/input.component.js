@@ -1,26 +1,29 @@
 import { RxFormGroup } from "@rxweb/reactive-forms";
 
 export default {
-  name: 'Input',
+  name: "Input",
   props: {
     type: {
-      readonly: true
+      readonly: true,
     },
     placeholder: {
-      readonly: true
+      readonly: true,
     },
     label: {
-      required: true
+      required: true,
     },
     field: {
-      required: true
+      required: true,
     },
     modelValue: {
-      required: true,
-      type: RxFormGroup
+      required: false,
+      type: RxFormGroup,
     },
     optional: {
-      readonly: true
-    }
- }
-}
+      readonly: true,
+    },
+    smaller: {
+      readonly: true,
+    },
+  },
+};

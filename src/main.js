@@ -9,6 +9,10 @@ import AOS from 'aos'
 import money from 'v-money';
 import { Icon } from '@iconify/vue2';
 import Toast from "vue-toastification";
+import FusionCharts from 'fusioncharts';
+import VueFusionCharts from 'vue-fusioncharts';
+import Doughnut2D from 'fusioncharts/fusioncharts.charts';
+import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 import { ReactiveFormConfig, ClientLibrary } from '@rxweb/reactive-forms';
 
 import Input from './components/input/index.vue';
@@ -74,13 +78,13 @@ AOS.init({
   anchorPlacement: 'top-bottom', // defines which position of the element regarding to window should trigger the animation
 });
 
-
 Vue.component('icon', Icon)
 Vue.component('Input', Input)
 Vue.component('Dropdown', Dropdown)
 
 Vue.use(money, moneyConfig);
-Vue.use(Toast, toastOptions)
+Vue.use(Toast, toastOptions);
+Vue.use(VueFusionCharts, FusionCharts, Doughnut2D, FusionTheme);
 
 let app;
 

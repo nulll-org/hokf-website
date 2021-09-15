@@ -29,7 +29,7 @@ export default {
     async makeReservation() {
       if (this.reservationFormGroup.valid) {
         const request = this.reservationFormGroup.props.request ? this.reservationFormGroup.value.request : ''
-        await newReservation({...this.reservationFormGroup.value, request: request})
+        await newReservation({...this.reservationFormGroup.value, request: request, status: 'pending'})
         .then(() => {
           window.scrollTo({ top: 0, behavior: 'smooth' });
           this.reservationMade = true;

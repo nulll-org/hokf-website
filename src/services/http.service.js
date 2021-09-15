@@ -1,5 +1,5 @@
 import axios from 'axios';
-// import loadingModule from '@/store/modules/loading.module';
+import loading from '../store/modules/loading';
 
 const config = {
     baseURL: `${process.env.VUE_APP_API_URL}`,
@@ -14,7 +14,7 @@ const httpService = axios.create(config);
 
 const authInterceptor = (config) => {
     if (activeRequests === 0) {
-        // loadingModule.startLoading()
+        loading.startLoading()
     }
 
     activeRequests++
@@ -28,7 +28,7 @@ httpService.interceptors.response.use(
     (response) => {
         activeRequests--
         if (activeRequests === 0) {
-            // loadingModule.stopLoading()
+            loading.stopLoading();
         }
 
         return response
@@ -36,7 +36,7 @@ httpService.interceptors.response.use(
     (error) => {
         activeRequests--
         if (activeRequests === 0) {
-            // loadingModule.stopLoading()
+            loading.stopLoading()
         }
         // console.log(error.response.data.detail)
         if (error.response.status === 401) {

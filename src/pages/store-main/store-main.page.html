@@ -13,7 +13,7 @@
                 <div class="flex flex-col space-y-1">
                     <p class="text-md font-inter w-auto overflow-ellipsis overflow-hidden md:text-lg lg:text-xl">{{ product.name }}</p>
                     <p class="text-sm font-inter w-auto uppercase overflow-ellipsis overflow-hidden md:text-md lg:text-md">{{ product.type || 'Jersey' }}</p>
-                    <money class="font-inter font-bold md:text-lg bg-white" disabled :value="product.discountedPrice" />
+                    <money class="font-inter font-bold text-dark-grey md:text-lg bg-white" disabled :value="product.discountedPrice" />
                 </div>
             </div>
         </div>

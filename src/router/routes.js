@@ -7,16 +7,29 @@ import Product from '@/pages/product/index.vue';
 import Checkout from '@/pages/checkout/index.vue';
 import StoreMain from '@/pages/store-main/index.vue';
 import Reservation from '@/pages/reservation/index.vue';
-// import Tournaments from '@/pages/tournaments/index.vue';
+import Admin from '@/pages/admin-pages/admin/index.vue';
+import Orders from '@/pages/admin-pages/orders/index.vue';
+import Products from '@/pages/admin-pages/products/index.vue';
+import Overview from '@/pages/admin-pages/overview/index.vue';
 
 const routes = [
   { path: '/', name: 'Home', component: Home },
   { path: '/cart', name: 'Cart', component: Cart },
-  { path: '/store', name: 'Store', component: Store },
   { path: '/about', name: 'About', component: About },
+  { path: '/store', name: 'Store', component: Store },
+  { path: '/admin/', name: 'Admin', component: Admin, redirect: 'admin/overview',
+    children: [
+      { path: 'overview', name: 'Overview', component: Overview, meta: { isAdmin: true, requiresAuth: true }},
+      { path: 'products', name: 'Products', component: Products, meta: { isAdmin: true, requiresAuth: true }},
+      { path: 'orders', name: 'Orders', component: Orders, meta: { isAdmin: true, requiresAuth: true }},
+      // { path: 'bookings', name: 'Bookings', component: Bookings, meta: { isAdmin: true, requiresAuth: true }},
+      // { path: 'queries', name: 'Queries', component: Queries, meta: { isAdmin: true, requiresAuth: true }},
+      { path: '*', name: 'Admin 404', component: Products, meta: { isAdmin: true, requiresAuth: true }},
+    ],
+    meta: { isAdmin: true, requiresAuth: true }
+  },
   { path: '/checkout', name: 'Checkout', component: Checkout },
   { path: '/store/main', name: 'StoreMain', component: StoreMain },
-  // { path: '/tournaments', name: 'Tournaments', component: Tournaments },
   { path: '/reservation', name: 'Reservation', component: Reservation },
   { path: '/order/:id', name: 'Order', component: Order, meta: { props: true } },
   { path: '/store/products/:id', name: 'Product', component: Product, meta: { props: true } },

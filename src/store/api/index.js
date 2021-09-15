@@ -4,8 +4,44 @@ import { httpService } from '../../services/http.service';
 import { sendTemplateMailToAdmin } from '../../services/mail.service';
 
 export async function getAllProducts() {
-    const products = await firebase.productCollection.get()
-    return products
+    const products = await firebase.productCollection.where("archived", "==", false).get();
+    const last = products.docs[products.docs.length-1];
+    return { products, last }
+}
+
+export async function getArchivedProducts() {
+    const products = await firebase.productCollection.where("archived", "==", true).get();
+    const last = products.docs[products.docs.length-1];
+    return { products, last }
+}
+
+export async function newProduct(product) {
+    const response = await firebase.productCollection.add(Object.assign({}, product))
+    return response
+}
+export async function updateProduct(product, id) {
+    const response = await firebase.productCollection.doc(id).update(Object.assign({}, product))
+    return response
+}
+
+export async function getNextProducts(previous) {
+    const products = await firebase.productCollection.startAfter(previous).limit(10).get();
+    const last = products.docs[products.docs.length-1];
+    return { products, last }
+}
+
+export async function setProductToArchived(productId) {
+    const response = await firebase.productCollection.doc(productId).update({
+        archived: true
+    })
+    return response
+}
+
+export async function setProductToUnarchived(productId) {
+    const response = await firebase.productCollection.doc(productId).update({
+        archived: false
+    })
+    return response
 }
 
 export async function searchProduct(query) {
@@ -16,6 +52,21 @@ export async function searchProduct(query) {
 export async function getOrder(id) {
     const order = await firebase.orderCollection.doc(id)
     return (await order.get());
+}
+
+export async function getAllCartItems() {
+    const cartItems = await firebase.cartItemCollection.get()
+    return cartItems;
+}
+
+export async function getAllOrders() {
+    const orders = await firebase.orderCollection.get()
+    return orders;
+}
+
+export async function getAllBookings() {
+    const bookings = await firebase.reservationCollection.get()
+    return bookings;
 }
 
 export async function getRelatedCartIems(orderId) {

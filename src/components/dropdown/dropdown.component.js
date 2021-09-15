@@ -21,6 +21,9 @@ export default {
     },
     optional: {
       readonly: true
-    }
+    },
+    smaller: {
+      readonly: true,
+    },
  }
 }

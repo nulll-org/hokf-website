@@ -1,6 +1,6 @@
 <div class="header relative z-30">
     <div
-        class="absolute navigation px-6 py-4 w-full bg-white flex items-center justify-between z-30 md:justify-start md:px-20">
+        class="absolute navigation px-6 py-4 w-full bg-dark-grey text-white flex items-center justify-between z-30 md:justify-start md:px-20">
         <router-link to="/cart" class="relative md:hidden">
             <div class="absolute absolute-center" v-if="cartSize > 0">
                 <p class="font-inter font-bold text-xs">{{ cartSize }}</p>
@@ -8,8 +8,8 @@
             <icon  @click="isNavOpen = false" icon="bytesize:bag" class="cursor-pointer md:hidden" height="32" width="32" />
         </router-link>
         <router-link to="/" class="logo w-20 md:mr-10 cursor-pointer">
-            <h1 @click="isNavOpen = false" class="font-extrabold text-3xl">HOKF</h1>
-            <!-- <img @click="isNavOpen = false" class="object-cover" src="../../assets/logo.jpg" alt="HOKF Logo"> -->
+            <!-- <h1 @click="isNavOpen = false" class="font-extrabold text-3xl">HOKF</h1> -->
+            <img @click="isNavOpen = false" class="object-cover" src="../../assets/logo.png" alt="HOKF Logo">
         </router-link>
         <div class="hidden md:flex md:space-x-6">
             <router-link to="/">
