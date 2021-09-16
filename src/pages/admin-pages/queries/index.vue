@@ -53,7 +53,7 @@
             <p
               class="
                 font-mulish font-bold
-                text-sm
+                text-lg
                 line-clamp-2
                 w-3/4
                 overflow-ellipsis overflow-hidden
@@ -83,13 +83,13 @@
     </div>
     <Modal v-if="isModalOpen" @closeModal="closeModal()">
       <div
-        class="flex items-center justify-center space-x-4 h-full"
+        class="flex items-center space-x-4 h-full"
         v-if="modalData"
       >
+        <div class="w-1/2">
+          <img :src="image" alt="" />
+        </div>
         <div class="w-1/2 flex flex-col space-y-2 overflow-auto">
-          <div class="w-40 h-40 mx-auto">
-            <img :src="image" alt="">
-          </div>
           <h3 class="flex items-center font-mulish text-purple-500">Query</h3>
           <div class="flex justify-between">
             <p>by: {{ modalData.name }}</p>

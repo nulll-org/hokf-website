@@ -3,7 +3,7 @@ import {} from "../../../store/api";
 import Modal from "../../../components/modal/index.vue";
 
 export default {
-  name: "Product",
+  name: "Orders",
   components: { Modal },
   props: [],
   data() {
@@ -20,7 +20,7 @@ export default {
           (order) => order.status == this.show
         );
       } else {
-        return onlineStore.state.allOrders;
+        return onlineStore.state.allOrders.sort((a, b) => b.date.toDate() - a.date.toDate());
       }
     },
     relatedCartItems() {

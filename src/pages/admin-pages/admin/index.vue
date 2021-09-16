@@ -134,7 +134,7 @@
             </div>
             <h3 class="uppercase">You'll need a larger screen</h3>
             <p class="uppercase text-xs">
-              The Admin Console not accessible from mobile devices
+              The Admin Console is not accessible with mobile devices
             </p>
             <p class="uppercase text-xs">Please log in on your Tablet or PC</p>
           </div>

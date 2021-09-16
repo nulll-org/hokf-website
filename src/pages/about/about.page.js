@@ -31,7 +31,6 @@ export default {
           errorNotification('There was an issue sending your Query. Please try again later')
         });
       } else {
-        console.log('hhdjjd')
         Object.keys(this.queryFormGroup).forEach(key => {
           this.queryFormGroup.props[key] = null;
         })

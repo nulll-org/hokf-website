@@ -156,30 +156,13 @@
     <Modal v-if="isModalOpen" @closeModal="closeModal()">
       <div class="flex space-x-4 h-full" v-if="modalData && relatedCartItems">
         <div class="w-1/2 h-full overflow-auto">
-          <h3 class="flex items-center mb-4 font-mulish">
-            Ordered Products
-          </h3>
+          <h3 class="flex items-center mb-4 font-mulish">Ordered Products</h3>
           <div
             v-for="cartItem in relatedCartItems"
             :key="cartItem.id"
             class="cartItem group w-32 inline-block mr-8 mb-2 cursor-pointer"
           >
             <div class="relative h-32 w-full">
-              <div
-                class="
-                  absolute
-                  right-2
-                  top-2
-                  text-xs
-                  px-2
-                  py-2
-                  bg-dark-grey
-                  text-white
-                  md:px-3
-                "
-              >
-                {{ cartItem.quantity }}x [{{ cartItem.size.toUpperCase() }}]
-              </div>
               <img
                 class="object-center w-full h-full"
                 :src="cartItem.product.photo"
@@ -198,16 +181,25 @@
               >
                 {{ cartItem.product.name }}
               </p>
-              <money
+              <p
                 class="
-                  font-inter font-bold
-                  text-dark-grey text-sm
-                  bg-transparent
-                  text-right
+                  line-clamp-2
+                  overflow-hidden overflow-ellipsis
+                  text-sm
                 "
-                disabled
-                :value="cartItem.price"
-              />
+              >
+                Quantity: {{ cartItem.quantity }}
+              </p>
+              <p
+                class="
+                  line-clamp-2
+                  overflow-hidden overflow-ellipsis
+                  text-sm
+                "
+              >
+                Size: <span class="font-bold">{{ (cartItem.size).toUpperCase() }}</span> 
+              </p>
+              
             </div>
           </div>
         </div>

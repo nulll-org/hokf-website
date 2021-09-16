@@ -16,16 +16,13 @@ export default {
       show: "all",
       isModalOpen: false,
       modalData: null,
+      imgae: null,
       images: [queryImage1, queryImage2, queryImage3, queryImage4]
     };
   },
   computed: {
     queries() {
       return queries.state.allQueries;
-    },
-    image() {
-      const random = parseInt(Math.random() * this.images.length)
-      return this.images[random]
     }
   },
   mounted() {
@@ -34,6 +31,8 @@ export default {
   methods: {
     openModal(query) {
       this.modalData = query;
+      const random = parseInt(Math.random() * this.images.length)
+      this.image = this.images[random]
       this.isModalOpen = true;
     },
     closeModal() {

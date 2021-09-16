@@ -59,8 +59,9 @@
       >
         <p class="font-mulish text-xs w-5/12 xl:text-lg">Product</p>
         <p class="font-mulish text-xs w-2/12 xl:text-lg">Category</p>
-        <p class="font-mulish text-xs w-2/12 xl:text-lg">In Stock</p>
-        <p class="font-mulish text-xs w-3/12 xl:text-lg"></p>
+        <p class="font-mulish text-xs w-2/12 xl:text-lg">Price</p>
+        <p class="font-mulish text-xs w-1/12 xl:text-lg">In Stock</p>
+        <p class="font-mulish text-xs w-2/12 xl:text-lg"></p>
       </div>
       <div
         id="products"
@@ -108,11 +109,24 @@
           </p>
           <p
             class="font-mulish text-xs w-2/12 xl:text-lg"
+          >
+            <money
+              class="
+                font-mulish font-bold
+                text-dark-grey
+                bg-transparent
+              "
+              disabled
+              :value="product.price"
+            />
+          </p>
+          <p
+            class="font-mulish text-xs w-1/12 xl:text-lg"
             :class="{ 'text-red-500 font-bold': product.totalAvailable < 10 }"
           >
             {{ product.totalAvailable }}
           </p>
-          <div class="flex items-center space-x-4 w-3/12">
+          <div class="flex items-center space-x-4 w-2/12">
             <p
               class="
                 font-mulish font-bold

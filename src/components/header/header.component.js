@@ -28,7 +28,6 @@ export default {
     },
     searchStore() {
       if (this.query.length > 2) {
-        console.log(this.query)
         this.$store.dispatch('searchForProducts', this.query)
       } else {
         this.$store.dispatch("fetchProducts")

@@ -128,7 +128,6 @@ export default {
       this.modalData = product.id;
       if (action == "edit") {
         this.previewImage = product.photo;
-        console.log(product);
         Object.keys(this.productFormGroup.value).map((key) => {
           this.productFormGroup.props[key] =
             product[key] || product.quantityAvailable[key];

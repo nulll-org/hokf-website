@@ -1,7 +1,7 @@
 import * as firebase from '../../firebase';
 import axios from 'axios'
 import { httpService } from '../../services/http.service';
-import { sendTemplateMailToAdmin } from '../../services/mail.service';
+import { sendTemplateMail, sendTemplateMailToAdmin } from '../../services/mail.service';
 
 export async function getAllProducts() {
     const products = await firebase.productCollection.where("archived", "==", false).get();
@@ -19,6 +19,7 @@ export async function newProduct(product) {
     const response = await firebase.productCollection.add(Object.assign({}, product))
     return response
 }
+
 export async function updateProduct(product, id) {
     const response = await firebase.productCollection.doc(id).update(Object.assign({}, product))
     return response
@@ -93,6 +94,23 @@ export async function newReservation(reservation) {
     const data = {..._reservation, date: date, time: time}
     sendTemplateMailToAdmin('newBooking', data)
     return response
+}
+
+export async function updateReservationStatus(reservation, status) {
+    const response = await firebase.reservationCollection.doc(reservation.id)
+    .update({
+        status: status
+    });
+    const dateTime = new Date(`${reservation.date}, ${reservation.time}`)
+    const date = dateTime.toLocaleDateString('en-us', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})
+    const time = dateTime.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+    const data = {...reservation, date: date, time: time}
+    if (status == 'approved') {
+        sendTemplateMail(reservation.email,'approvedBooking', data)
+    } else if (status == 'declined') {
+        sendTemplateMail(reservation.email,'declinedBooking', data)
+    }
+    return response;
 }
 
 export async function newQuery(query) {
