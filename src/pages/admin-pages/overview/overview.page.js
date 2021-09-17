@@ -9,6 +9,7 @@ export default {
   data() {
     return {
       month: new Date().toLocaleDateString("en-US", { month: "long" }),
+      year: new Date().toLocaleDateString("en-US", { year: "numeric" }),
       today: new Date().getDate(),
       months: [
         "January",
@@ -60,60 +61,42 @@ export default {
       return { data: chart, chart: this.chart };
     },
     orders() {
-      return onlineStore.state.allOrders.filter(
-        (order) =>
-          order.date.toDate().toLocaleDateString("en-US", { month: "long" }) ==
-          this.month
+      return onlineStore.state.allOrders.filter((order) =>
+        this.dateFilter(order.date.toDate())
       ).length;
     },
     totalSales() {
       return onlineStore.state.allOrders
         .filter(
           (order) =>
-            order.status == "paid" &&
-            order.date
-              .toDate()
-              .toLocaleDateString("en-US", { month: "long" }) == this.month
+            order.status == "paid" && this.dateFilter(order.date.toDate())
         )
         .reduce((a, b) => a + b.price, 0);
     },
     bookings() {
-      return bookings.state.allBookings.filter(
-        (booking) =>
-          new Date(booking.date).toLocaleDateString("en-US", {
-            month: "long",
-          }) == this.month
+      return bookings.state.allBookings.filter((booking) =>
+        this.dateFilter(new Date(booking.date))
       ).length;
     },
     pendingOrders() {
       return onlineStore.state.allOrders.filter(
         (order) =>
-          order.status == "pending" &&
-          order.date.toDate().toLocaleDateString("en-US", { month: "long" }) ==
-            this.month
+          order.status == "pending" && this.dateFilter(order.date.toDate())
       ).length;
     },
     pendingBookings() {
       return bookings.state.allBookings.filter(
         (booking) =>
           booking.status == "pending" &&
-          new Date(booking.date).toLocaleDateString("en-US", {
-            month: "long",
-          }) == this.month &&
+          this.dateFilter(new Date(booking.date)) &&
           new Date(booking.date).getDate() > this.today
       ).length;
     },
     upcomingBookings() {
       return bookings.state.allBookings.filter(
-        (booking) =>
-          new Date(booking.date).toLocaleDateString("en-US", {
-            month: "long",
-          }) == this.month && new Date(booking.date).getDate() > this.today
+        (booking) => this.dateFilter(new Date(booking.date)) && new Date(booking.date).getDate() > this.today
       ).length;
     },
-    // cartItems() {
-    //   return onlineStore.state.allCartItems;
-    // }
   },
   mounted() {
     this.$store.dispatch("fetchAllProducts");
@@ -122,12 +105,12 @@ export default {
     // this.$store.dispatch("fetchAllCartItems");
   },
   methods: {
-    goToPendingOrders() {
-      this.$router.push({name: 'Orders', hash: 'pending'})
+    dateFilter(date) {
+      const month =
+        date.toLocaleDateString("en-US", { month: "long" }) == this.month;
+      const year =
+        date.toLocaleDateString("en-US", { year: "numeric" }) == this.year;
+      return month && year;
     },
-    goToPendingBookings() {
-      console.log('djjdjd')
-      this.$router.push({name: 'Bookings', hash: 'pending'})
-    }
   },
 };

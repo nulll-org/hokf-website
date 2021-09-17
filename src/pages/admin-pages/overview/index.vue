@@ -5,7 +5,7 @@
         <div class="flex flex-col">
           <h4 class="font-bold font-mulish mb-2 xl:text-3xl">
             Total Sales
-            <span class="text-xs uppercase font-medium xl:text-lg">[{{ month }}]</span>
+            <span class="text-xs uppercase font-medium xl:text-lg">[{{ month }}, {{ year }}]</span>
           </h4>
           <money
             class="font-inter font-bold text-dark-grey text-2xl bg-white xl:text-5xl"
@@ -24,14 +24,18 @@
       <div class="w-1/2">
         <div class="input flex flex-col w-1/2 ml-auto space-y-2">
           <p class="text-sm">Showing statistics for</p>
-          <select
-            class="px-3 py-2 border border-solid border-gray-700"
-            v-model="month"
-          >
-            <option :value="month" v-for="month in months" :key="month">
-              {{ month }}
-            </option>
-          </select>
+          <div class="flex space-x-2">
+            <select
+              class="px-3 py-2 w-2/3 border border-solid border-gray-700"
+              v-model="month"
+            >
+              <option :value="month" v-for="month in months" :key="month">
+                {{ month }}
+              </option>
+            </select>
+            <input class="px-3 py-2 border border-solid border-gray-700" type="number" min="2000" max="2499" step="1" v-model="year" />
+
+          </div>
         </div>
       </div>
     </div>
