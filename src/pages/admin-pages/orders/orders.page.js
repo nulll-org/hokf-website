@@ -19,30 +19,30 @@ export default {
           (order) => order.status == this.show
         );
       } else {
-        return onlineStore.state.allOrders.sort((a, b) => b.date.toDate() - a.date.toDate());
+        return onlineStore.state.allOrders.sort(
+          (a, b) => b.date.toDate() - a.date.toDate()
+        );
       }
     },
     relatedCartItems() {
-      return onlineStore.state.relatedCartItems
+      return onlineStore.state.relatedCartItems;
     },
     show() {
-      if (this.$route.hash == '') {
-        return 'all'
+      if (this.$route.hash == "") {
+        return "all";
       }
-      return this.$route.hash.replace('#', '')
-    }
+      return this.$route.hash.replace("#", "");
+    },
   },
   mounted() {
     this.$store.dispatch("fetchAllOrders");
   },
   methods: {
     openModal(order) {
-      this.$store
-        .dispatch("fetchRelatedCartItems", order.id)
-        .then(() => {
-          this.modalData = { ...order };
-          this.isModalOpen = true;
-        });
+      this.$store.dispatch("fetchRelatedCartItems", order.id).then(() => {
+        this.modalData = { ...order };
+        this.isModalOpen = true;
+      });
     },
     closeModal() {
       this.isModalOpen = false;
@@ -56,8 +56,7 @@ export default {
       });
     },
     display(query) {
-      if (query)
-      this.$router.push({hash: query})
+      if (query) this.$router.push({ hash: query });
     },
     clearOrderState() {
       this.modalData = null;
