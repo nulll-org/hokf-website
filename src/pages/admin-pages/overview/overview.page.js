@@ -94,15 +94,14 @@ export default {
     },
     upcomingBookings() {
       return bookings.state.allBookings.filter(
-        (booking) => this.dateFilter(new Date(booking.date)) && new Date(booking.date).getDate() > this.today
+        (booking) =>
+          this.dateFilter(new Date(booking.date)) &&
+          new Date(booking.date).getDate() > this.today
       ).length;
     },
   },
   mounted() {
-    this.$store.dispatch("fetchAllProducts");
-    this.$store.dispatch("fetchAllOrders");
-    this.$store.dispatch("fetchAllBookings");
-    // this.$store.dispatch("fetchAllCartItems");
+    this.fetch();
   },
   methods: {
     dateFilter(date) {
@@ -111,6 +110,20 @@ export default {
       const year =
         date.toLocaleDateString("en-US", { year: "numeric" }) == this.year;
       return month && year;
+    },
+    refresh() {
+      this.fetch();
+    },
+    resetStats() {
+      this.month = new Date().toLocaleDateString("en-US", { month: "long" });
+      this.year = new Date().toLocaleDateString("en-US", { year: "numeric" });
+      this.today = new Date().getDate();
+      this.fetch();
+    },
+    fetch() {
+      this.$store.dispatch("fetchAllProducts");
+      this.$store.dispatch("fetchAllOrders");
+      this.$store.dispatch("fetchAllBookings");
     },
   },
 };

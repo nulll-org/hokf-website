@@ -6,6 +6,10 @@ export default {
     },
     value: {
       readonly: true
+    },
+    route: {
+      default: '#',
+      readonly: true,
     }
  }
 }

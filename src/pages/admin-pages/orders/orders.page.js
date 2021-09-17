@@ -8,7 +8,6 @@ export default {
   props: [],
   data() {
     return {
-      show: "all",
       isModalOpen: false,
       modalData: null,
     };
@@ -25,6 +24,12 @@ export default {
     },
     relatedCartItems() {
       return onlineStore.state.relatedCartItems
+    },
+    show() {
+      if (this.$route.hash == '') {
+        return 'all'
+      }
+      return this.$route.hash.replace('#', '')
     }
   },
   mounted() {
@@ -51,7 +56,8 @@ export default {
       });
     },
     display(query) {
-      this.show = query;
+      if (query)
+      this.$router.push({hash: query})
     },
     clearOrderState() {
       this.modalData = null;

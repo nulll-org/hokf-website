@@ -8,7 +8,7 @@ export default {
   props: [],
   data() {
     return {
-      show: "all",
+      // show: this.$route.hash.replace('#', ''),
       isModalOpen: false,
       modalData: null,
     };
@@ -20,10 +20,16 @@ export default {
           (booking) => booking.status == this.show && booking.area != null
         );
       } else {
-        return bookings.state.allBookings.filter((booking) => booking.area != null).sort(
-          (a, b) => new Date(b.date) - new Date(a.date)
-        );
+        return bookings.state.allBookings
+          .filter((booking) => booking.area != null)
+          .sort((a, b) => new Date(b.date) - new Date(a.date));
       }
+    },
+    show() {
+      if (this.$route.hash == "") {
+        return "all";
+      }
+      return this.$route.hash.replace("#", "");
     },
   },
   mounted() {
@@ -47,7 +53,7 @@ export default {
       });
     },
     display(query) {
-      this.show = query;
+      this.$router.push({ hash: query });
     },
     clearOrderState() {
       this.modalData = null;

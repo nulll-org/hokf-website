@@ -11,7 +11,7 @@ export class Product {
     this.archived = product.archived;
     this.quantityAvailable = product.quantityAvailable;
     this.quantitySold = product.quantitySold;
-    this.discountPercentage = product.discountPercentage;
+    this.discountPercentage = product.discountPercentage || 0;
   }
 
   get discountedPrice() {
