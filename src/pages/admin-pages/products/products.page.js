@@ -59,8 +59,11 @@ export default {
         .then((response) => {
           this.productFormGroup.props.photo = response.data.secure_url;
           this.previewImage = URL.createObjectURL(image);
-        }).catch(() => {
-          errorNotification('There was a problem uploading the image. Please try again.')
+        })
+        .catch(() => {
+          errorNotification(
+            "There was a problem uploading the image. Please try again."
+          );
         });
     },
     async submitCreate() {
@@ -96,6 +99,7 @@ export default {
     },
     async submitUpdate() {
       if (this.productFormGroup.valid) {
+        console.log(this.productFormGroup);
         const product = this.productFormGroup.value;
         const available = {
           xl: parseInt(product.xl) || 0,
@@ -104,7 +108,7 @@ export default {
           s: parseInt(product.s) || 0,
           xs: parseInt(product.xs) || 0,
         };
-        const discount = product.discountPercentage || 0;
+        const discount = product.discountPercentage > -1 ? product.discountPercentage : 0;
         const stock = Object.values(available).reduce((a, b) => a + b, 0) > 0;
         const _product = {
           name: this.productFormGroup.value.name,
@@ -163,6 +167,6 @@ export default {
     fetchProducts() {
       this.$store.dispatch("fetchAllProducts");
       this.$store.dispatch("fetchArchivedProducts");
-    }
+    },
   },
 };

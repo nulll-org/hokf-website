@@ -111,3 +111,12 @@ export class ProductValidator {
     @toFloat({message: 'Percentage must be a number'})
     discountPercentage
 }
+
+export class LoginValidator {
+    @email()
+    @required()
+    email
+
+    @required()
+    password
+}

@@ -1,74 +1,127 @@
 <div id="product" class="md:pt-4 lg:pt-8">
-    <div class="hidden md:flex md:px-10 md:mb-8 lg:px-48 xl:px-80">
-        <div @click="goBackToStore" class="flex items-center cursor-pointer">
-            <icon icon="ic:baseline-arrow-back" class="text-dark-grey" />
-            <p class="hover:underline cursor-pointer ml-2"> Go back to store </p>
-        </div>
+  <div class="hidden md:flex md:px-10 md:mb-8 lg:px-48 xl:px-80">
+    <div @click="goBackToStore" class="flex items-center cursor-pointer">
+      <icon icon="ic:baseline-arrow-back" class="text-dark-grey" />
+      <p class="hover:underline cursor-pointer ml-2">Go back to store</p>
     </div>
-    <div v-if="product"
-        class="product group flex flex-col space-y-4 mb-8 w-full md:px-10 md:flex-row md:space-y-0 md:space-x-8 lg:px-48 xl:px-80 xl:h-70vh">
-        <div data-aos="fade-right" class="w-full h-70vh md:h-80vh xl:h-5/6 relative select-none md:z-50">
-            <div class="absolute right-4 top-4 px-3 py-2 bg-dark-grey text-white" v-if="product.discountPercentage > 0">
-                {{product.discountPercentage}}% OFF
-            </div>
-            <img :src="product.photo" :alt="product.name">
-        </div>
-        <div class="mb-4 px-4 flex flex-col space-y-6 md:space-y-8">
-            <div class="flex flex-col space-y-1">
-                <p class="text-2xl font-inter w-auto overflow-ellipsis overflow-hidden">{{ product.name }}</p>
-                <p class="text-md font-inter w-auto overflow-ellipsis overflow-hidden md:text-md lg:text-lg">{{
-                    product.type || 'Jersey' }}</p>
-                <money class="font-inter font-bold text-dark-grey text-xl bg-white" disabled :value="product.discountedPrice" />
-            </div>
-
-            <div>
-                <p>{{ product.description }}</p>
-            </div>
-
-            <div class="flex flex-col space-y-3 bg-white z-40 select-none" v-if="quantityAvailable > 0">
-                <p class="text-sm">Sizes available</p>
-                <div class="flex space-x-5 bg-white z-40">
-                    <div v-if="sizes[size] > 0" @click="selectSize(size)"
-                        :class="{'bg-dark-grey text-white': selectedSize == size}"
-                        class="p-2 w-12 h-12 flex items-center justify-center uppercase border border-solid border-gray-700 md:cursor-pointer"
-                        v-for="size in allSizes" :key="size">
-                        {{size}}
-                    </div>
-                </div>
-                <transition enter-active-class="animate__animated animate__slideInLeft"
-                    leave-active-class="animate__animated animate__slideOutLeft" mode="out-in">
-                    <p v-if="sizes[selectedSize] < 11" class="select-none">Limited stock available</p>
-                </transition>
-            </div>
-
-            <transition enter-active-class="animate__animated animate__fadeInDown"
-                leave-active-class="animate__animated animate__fadeOutUp">
-                <div class="flex items-center justify-between" v-if="selectedSize && quantity > 0">
-                    <div @click="updateProductQuantity('-')"
-                        :class="{'border-gray-400': quantity == 1, 'border-gray-700': quantity > 1}"
-                        class="p-2 w-12 h-12 flex items-center justify-center uppercase border border-solid md:cursor-pointer">
-                        <icon icon="ant-design:minus-outlined" :class="{'text-gray-400': quantity == 1}" width="50" />
-                    </div>
-                    <p class="font-inter text-3xl select-none"> {{quantity}} </p>
-                    <div @click="updateProductQuantity('+')"
-                        :class="{'border-gray-400': quantity == sizes[selectedSize], 'border-gray-700': quantity < sizes[selectedSize]}"
-                        class="p-2 w-12 h-12 flex items-center justify-center uppercase border border-solid md:cursor-pointer">
-                        <icon icon="ant-design:plus-outlined"
-                            :class="{'text-gray-400': quantity == sizes[selectedSize]}" width="50" />
-                    </div>
-                </div>
-            </transition>
-
-            <button v-if="quantityAvailable > 0" @click="addToCart()"
-                class="px-4 py-3 mt-4 select-none  cursor-pointer text-center text-white font-inter font-bold text-lg md:w-48 md:ml-auto"
-                :class="{'bg-gray-300': !selectedSize, 'bg-dark-grey': selectedSize}">
-                ADD TO CART
-            </button>
-
-            <div v-if="quantityAvailable < 1">
-                <p class="font-inter">This product is currently out of stock</p>
-            </div>
-
-        </div>
+  </div>
+  <div
+    v-if="product"
+    class="product group flex flex-col space-y-4 mb-8 w-full md:px-10 md:flex-row md:space-y-0 md:space-x-8 lg:px-48 xl:px-80 xl:h-70vh"
+  >
+    <div
+      data-aos="fade-right"
+      class="w-full h-70vh md:h-80vh xl:h-5/6 relative select-none md:z-50"
+    >
+      <div
+        class="absolute right-4 top-4 px-3 py-2 bg-dark-grey text-white"
+        v-if="product.discountPercentage > 0"
+      >
+        {{product.discountPercentage}}% OFF
+      </div>
+      <img :src="product.photo" :alt="product.name" />
     </div>
+    <div class="mb-4 px-4 flex flex-col space-y-6 md:space-y-8">
+      <div class="flex flex-col space-y-1">
+        <p class="text-2xl font-inter w-auto overflow-ellipsis overflow-hidden">
+          {{ product.name }}
+        </p>
+        <p
+          class="text-md font-inter w-auto overflow-ellipsis overflow-hidden md:text-md lg:text-lg"
+        >
+          {{ product.type || 'Jersey' }}
+        </p>
+        <money
+          v-if="product.discountPercentage"
+          class="font-inter text-gray-500 inline-block font-bold line-through md:text-sm bg-white"
+          disabled
+          :value="product.price"
+        />
+        <money
+          class="font-inter font-bold text-dark-grey text-xl bg-white"
+          disabled
+          :value="product.discountedPrice"
+        />
+      </div>
+
+      <div>
+        <p>{{ product.description }}</p>
+      </div>
+
+      <div
+        class="flex flex-col space-y-3 bg-white z-40 select-none"
+        v-if="quantityAvailable > 0"
+      >
+        <p class="text-sm">Sizes available</p>
+        <div class="flex space-x-5 bg-white z-40">
+          <div
+            v-if="sizes[size] > 0"
+            @click="selectSize(size)"
+            :class="{'bg-dark-grey text-white': selectedSize == size}"
+            class="p-2 w-12 h-12 flex items-center justify-center uppercase border border-solid border-gray-700 md:cursor-pointer"
+            v-for="size in allSizes"
+            :key="size"
+          >
+            {{size}}
+          </div>
+        </div>
+        <transition
+          enter-active-class="animate__animated animate__slideInLeft"
+          leave-active-class="animate__animated animate__slideOutLeft"
+          mode="out-in"
+        >
+          <p v-if="sizes[selectedSize] < 11" class="select-none">
+            Limited stock available
+          </p>
+        </transition>
+      </div>
+
+      <transition
+        enter-active-class="animate__animated animate__fadeInDown"
+        leave-active-class="animate__animated animate__fadeOutUp"
+      >
+        <div
+          class="flex items-center justify-between"
+          v-if="selectedSize && quantity > 0"
+        >
+          <div
+            @click="updateProductQuantity('-')"
+            :class="{'border-gray-400': quantity == 1, 'border-gray-700': quantity > 1}"
+            class="p-2 w-12 h-12 flex items-center justify-center uppercase border border-solid md:cursor-pointer"
+          >
+            <icon
+              icon="ant-design:minus-outlined"
+              :class="{'text-gray-400': quantity == 1}"
+              width="50"
+            />
+          </div>
+          <p class="font-inter text-3xl select-none">{{quantity}}</p>
+          <div
+            @click="updateProductQuantity('+')"
+            :class="{'border-gray-400': quantity == sizes[selectedSize], 'border-gray-700': quantity < sizes[selectedSize]}"
+            class="p-2 w-12 h-12 flex items-center justify-center uppercase border border-solid md:cursor-pointer"
+          >
+            <icon
+              icon="ant-design:plus-outlined"
+              :class="{'text-gray-400': quantity == sizes[selectedSize]}"
+              width="50"
+            />
+          </div>
+        </div>
+      </transition>
+
+      <button
+        v-if="quantityAvailable > 0"
+        @click="addToCart()"
+        class="px-4 py-3 mt-4 select-none  cursor-pointer text-center text-white font-inter font-bold text-lg md:w-48 md:ml-auto"
+        :class="{'bg-gray-300': !selectedSize, 'bg-dark-grey': selectedSize}"
+      >
+        ADD TO CART
+      </button>
+
+      <div v-if="quantityAvailable < 1">
+        <p class="font-inter">This product is currently out of stock</p>
+      </div>
+    </div>
+  </div>
 </div>

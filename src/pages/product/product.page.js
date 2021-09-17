@@ -33,6 +33,7 @@ export default {
   },
   mounted() {
     this.$store.dispatch('fetchProduct', this.$route.params.id)
+    document.title = this.product.name
   },
   methods: {
     selectSize(size) {

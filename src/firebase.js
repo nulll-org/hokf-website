@@ -1,6 +1,7 @@
 import firebase from 'firebase/app';
 
 import 'firebase/firestore'
+import 'firebase/auth'
 
 var firebaseConfig = {
   apiKey: process.env.VUE_APP_FIREBASE_API_KEY,
@@ -14,6 +15,8 @@ var firebaseConfig = {
 
 const firebaseApp = firebase.initializeApp(firebaseConfig)
 const timeStamp = firebase.firestore.Timestamp.fromDate(new Date());
+const firebaseAuth = firebase.auth();
+
 
 const productCollection = firebaseApp.firestore().collection('products')
 const orderCollection = firebaseApp.firestore().collection('orders')
@@ -22,5 +25,5 @@ const reservationCollection = firebaseApp.firestore().collection('reservations')
 const queryCollection = firebaseApp.firestore().collection('queries')
 const mail = firebaseApp.firestore().collection('mail')
 
-export { timeStamp, productCollection, orderCollection, cartItemCollection, reservationCollection, queryCollection, mail }
+export { firebaseAuth, timeStamp, productCollection, orderCollection, cartItemCollection, reservationCollection, queryCollection, mail }
 export default firebaseApp.firestore()

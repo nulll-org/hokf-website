@@ -2,8 +2,17 @@
   <div>
     <div id="dashboard" class="hidden md:flex h-screen">
       <div
+        v-if="!isLogin"
         id="admin-navigation"
-        class="flex flex-col space-y-10 h-screen w-3/12 bg-dark-grey lg:w-18% xl:2/10"
+        class="
+          flex flex-col
+          space-y-10
+          h-screen
+          w-3/12
+          bg-dark-grey
+          lg:w-18%
+          xl:2/10
+        "
       >
         <div class="logo w-20 mt-4 mx-auto cursor-pointer lg:w-32 xl:w-40">
           <img
@@ -110,19 +119,28 @@
           </router-link>
         </div>
       </div>
-      <div id="admin-body" class="w-9/12 lg:w-82% xl:8/10 overflow-hidden">
+      <div id="admin-body" class="overflow-hidden" :class="{'w-screen': isLogin, 'w-9/12 lg:w-82% xl:8/10': !isLogin}">
         <div
+          v-if="!isLogin"
           id="admin-header"
-          class="flex items-center justify-between sm:p-4 h-10vh lg:px-8 xl:p-14"
+          class="
+            flex
+            items-center
+            justify-between
+            sm:p-4
+            h-10vh
+            lg:px-8
+            xl:p-14
+          "
         >
           <p class="font-bold font-mulish text-xl lg:text-2xl xl:text-3xl">
             {{ pageName }}
           </p>
           <div>
-            <p class="text-xs font-bold uppercase xl:text-lg">Logout</p>
+            <p @click="logout()" class="text-xs cursor-pointer font-bold uppercase xl:text-lg">Logout</p>
           </div>
         </div>
-        <router-view class="h-90vh sm:p-4 lg:px-6 lg:pb-6 xl:px-14" />
+        <router-view class="sm:p-4 lg:px-6 lg:pb-6 xl:px-14" :class="{'p-0 h-screen': isLogin, 'h-90vh': !isLogin}" />
       </div>
     </div>
     <div id="mobile-no-show" class="flex md:hidden">
