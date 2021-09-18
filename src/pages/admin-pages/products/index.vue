@@ -78,6 +78,7 @@
           :key="product.id"
           class="
             product
+            hover:bg-gray-200
             -mx-6
             md:py-2
             px-4
@@ -107,15 +108,9 @@
           <p class="font-mulish text-xs w-2/12 xl:text-lg">
             {{ product.type }}
           </p>
-          <p
-            class="font-mulish text-xs w-2/12 xl:text-lg"
-          >
+          <p class="font-mulish text-xs w-2/12 xl:text-lg">
             <money
-              class="
-                font-mulish font-bold
-                text-dark-grey
-                bg-transparent
-              "
+              class="font-mulish font-bold text-dark-grey bg-transparent"
               disabled
               :value="product.price"
             />
@@ -177,7 +172,7 @@
       </div>
     </div>
     <Modal v-if="isModalOpen" @closeModal="closeModal()">
-      <div class="flex space-x-4 h-full">
+      <div class="flex space-x-4 h-full -mx-10">
         <div class="w-1/2" @click="addImage()">
           <img :src="previewImage" alt="" />
           <input

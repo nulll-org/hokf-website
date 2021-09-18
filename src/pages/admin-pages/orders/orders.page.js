@@ -1,6 +1,11 @@
 import onlineStore from "../../../store/modules/online-store";
 import {} from "../../../store/api";
 import Modal from "../../../components/modal/index.vue";
+import { sendOrderReminderMail } from "../../../services/mail.service";
+import {
+  errorNotification,
+  successNotification,
+} from "../../../services/notification.service";
 
 export default {
   name: "Orders",
@@ -60,6 +65,26 @@ export default {
     },
     clearOrderState() {
       this.modalData = null;
+    },
+    sendReminder() {
+      const cartItems = [];
+      this.relatedCartItems.forEach((item) => {
+        cartItems.push({
+          name: item.product.name,
+          quantity: item.quantity,
+          size: item.size,
+          price: item.price,
+        });
+      });
+      const order = { cartItems: cartItems, ...this.modalData };
+      sendOrderReminderMail(this.modalData.email, order)
+        .then(() => {
+          this.closeModal();
+          successNotification("Email sent successfully");
+        })
+        .catch(() =>
+          errorNotification("There was a problem sending the reminder")
+        );
     },
   },
 };

@@ -63,7 +63,7 @@
       <h4 class="font-bold font-mulish xl:text-3xl">Orders</h4>
       <div class="flex flex-wrap space-x-4 sm:mt-3 xl:mt-6">
         <Stats :route="'orders'" :label="'Total Orders'" :value="orders" />
-        <Stats :label="'Pending Orders'" :value="pendingOrders" />
+        <Stats :route="'orders#pending'" :label="'Pending Orders'" :value="pendingOrders" />
       </div>
     </div>
     <div class="bookings">

@@ -8,9 +8,9 @@ export default {
   props: [],
   data() {
     return {
-      // show: this.$route.hash.replace('#', ''),
-      isModalOpen: false,
       modalData: null,
+      isModalOpen: false,
+      today: new Date(),
     };
   },
   computed: {
@@ -18,7 +18,7 @@ export default {
       if (this.show !== "all") {
         return bookings.state.allBookings.filter(
           (booking) => booking.status == this.show && booking.area != null
-        );
+        ).sort((a, b) => new Date(b.date) - new Date(a.date));
       } else {
         return bookings.state.allBookings
           .filter((booking) => booking.area != null)
@@ -69,6 +69,11 @@ export default {
         this.$store.dispatch("fetchAllBookings");
         this.closeModal();
       });
+    },
+    isPassed(booking) {
+      if (new Date(booking.date) > this.today) {
+        return true
+      }
     },
   },
 };

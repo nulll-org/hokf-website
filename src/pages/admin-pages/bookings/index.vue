@@ -154,7 +154,12 @@
             {{ localDate(booking.date) }}
           </p>
           <p class="font-mulish uppercase font-bold text-xs w-1/12 xl:text-sm">
-            {{ booking.status }}
+            <span v-if="isPassed(booking)">
+              {{ booking.status }}
+            </span>
+            <span v-else class="text-gray-500">
+              PASSED
+            </span>
           </p>
         </div>
       </div>

@@ -162,14 +162,17 @@
             :key="cartItem.id"
             class="cartItem group w-32 inline-block mr-8 mb-2 cursor-pointer"
           >
-            <div class="relative h-32 w-full">
+            <div class="relative h-32 w-full" v-if="cartItem.product">
               <img
                 class="object-center w-full h-full"
                 :src="cartItem.product.photo"
                 alt=""
               />
             </div>
-            <div class="flex flex-col text-center mt-2 p-2 w-full shadow-drop">
+            <div
+              v-if="cartItem.product"
+              class="flex flex-col text-center mt-2 p-2 w-full shadow-drop"
+            >
               <p
                 class="
                   font-bold
@@ -181,25 +184,13 @@
               >
                 {{ cartItem.product.name }}
               </p>
-              <p
-                class="
-                  line-clamp-2
-                  overflow-hidden overflow-ellipsis
-                  text-sm
-                "
-              >
+              <p class="line-clamp-2 overflow-hidden overflow-ellipsis text-sm">
                 Quantity: {{ cartItem.quantity }}
               </p>
-              <p
-                class="
-                  line-clamp-2
-                  overflow-hidden overflow-ellipsis
-                  text-sm
-                "
-              >
-                Size: <span class="font-bold">{{ (cartItem.size).toUpperCase() }}</span> 
+              <p class="line-clamp-2 overflow-hidden overflow-ellipsis text-sm">
+                Size:
+                <span class="font-bold">{{ cartItem.size.toUpperCase() }}</span>
               </p>
-              
             </div>
           </div>
         </div>
@@ -269,6 +260,23 @@
               :value="modalData.price"
             />
           </div>
+          <button
+            v-if="modalData.status == 'pending' && modalData.accessCode"
+            @click="sendReminder()"
+            class="
+              px-4
+              py-3
+              mt-4
+              cursor-pointer
+              text-center text-white
+              font-inter font-bold
+              text-lg
+              bg-dark-grey
+              md:w-48
+            "
+          >
+            SEND REMINDER
+          </button>
         </div>
       </div>
     </Modal>
