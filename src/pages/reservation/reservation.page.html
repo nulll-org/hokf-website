@@ -2,13 +2,11 @@
     <section id="landing" class=" bg-cover h-full ">
         <div class="lg:flex lg:px-32" v-if="!reservationMade">
             <div
-                class="flex flex-col items-center text-center justify-center text-white h-full px-8 pt-16 py-8 space-y-4 md:px-32 lg:w-1/2 lg:absolute lg:top-5 lg:right-0">
+                class="flex flex-col items-center text-center justify-center text-black h-full px-8 pt-16 py-8 space-y-4 md:px-32 lg:w-1/2 lg:absolute lg:top-5 lg:right-0">
                 <h1 class="font-extrabold lg:text-7xl">MAKE YOUR RESERVATION</h1>
-                <p class="text-xl">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit facilis atque mollitia
-                    rerum
-                    qui repellendus!</p>
+                <p class="text-xl">Reserve parts of our Garden you would like to host your family friendly events</p>
             </div>
-            <div class="form px-8 py-8 md:px-32 lg:px-0 xl:px-8 lg:w-1/2" data-aos="fade-up">
+            <div class="form my-6 px-8 py-8 md:px-32 lg:px-0 xl:px-8 lg:w-1/2" data-aos="fade-up">
                 <div class="relative p-8 w-full flex flex-col space-y-8 bg-white">
                     <Input :label="'Name'" :modelValue="reservationFormGroup" :field="'name'"
                         :placeholder="'Enter your name'" :type="'text'" />
@@ -20,8 +18,7 @@
                         :field="'area'" :placeholder="'How long'" :type="'number'" :options="areas" />
                     <Input :label="'Date'" :modelValue="reservationFormGroup" :field="'date'" :type="'date'" />
                     <Input :label="'Time'" :modelValue="reservationFormGroup" :field="'time'" :type="'time'" />
-                    <Dropdown :label="'Duration'" :modelValue="reservationFormGroup" :field="'duration'"
-                        :placeholder="'How long'" :type="'number'" :options="duration" />
+                    <Input :label="'Duration (in hours)'" :modelValue="reservationFormGroup" :field="'duration'" :type="'number'" />
                     <div class="input flex flex-col space-y-3">
                         <p>Special Request</p>
                         <div class="px-4 py-3 border border-solid border-gray-700 w-full h-full">

@@ -1,4 +1,4 @@
-import { createOrder, getNigerianStates } from "../../store/api"
+import { createOrder, getNigerianStates } from "../../store/api";
 import onlineStore from "../../store/modules/online-store";
 import { RxFormBuilder } from "@rxweb/reactive-forms";
 import { OrderValidator } from "../../store/validators";
@@ -6,14 +6,14 @@ import { errorNotification } from "../../services/notification.service";
 import loading from "../../store/modules/loading";
 
 export default {
-  name: 'Checkout',
+  name: "Checkout",
   components: {},
   props: [],
   beforeRouteEnter(to, from, next) {
     if (onlineStore.state.cartService.cart.cartItems.length < 1) {
-      next({name: from.name || 'Home'})
+      next({ name: from.name || "Home" });
     } else {
-      next()
+      next();
     }
   },
   data() {
@@ -21,10 +21,10 @@ export default {
     const orderFormGroup = formBuilder.formGroup(OrderValidator);
 
     return {
-    states: [],
-    orderFormGroup,
-    country: 'Nigeria'
-    }
+      states: [],
+      orderFormGroup,
+      country: "Nigeria",
+    };
   },
   computed: {
     cartItems() {
@@ -35,25 +35,28 @@ export default {
     },
     loading() {
       return loading.state.loading;
-    }
+    },
   },
   mounted() {
-    getNigerianStates()
-    .then((states) => {
+    getNigerianStates().then((states) => {
       states.forEach((state) => {
-        this.states.push(state.name)
-      })
-    })
+        this.states.push(state.name);
+      });
+    });
   },
   methods: {
     async checkOut() {
       if (this.orderFormGroup.valid) {
-        let _cartItems = []
+        let _cartItems = [];
         this.cartItems.forEach((cartItem) => {
-          _cartItems.push({productId: cartItem.product.id, quantity: cartItem.quantity, size: cartItem.size})
-        })
+          _cartItems.push({
+            productId: cartItem.product.id,
+            quantity: cartItem.quantity,
+            size: cartItem.size,
+          });
+        });
         const order = {
-          order : {
+          order: {
             customer: {
               firstName: this.orderFormGroup.value.firstName,
               lastName: this.orderFormGroup.value.lastName,
@@ -66,17 +69,22 @@ export default {
             city: this.orderFormGroup.value.city,
             state: this.orderFormGroup.value.state,
             country: this.country,
-          }
-        }
+          },
+        };
         await createOrder(order)
-        .then((response) => {
-          window.location.replace(response.authorization_url);
-        }).catch(() => {
-          errorNotification('Your Order could not be placed right now. Please try gaian later.')
-        })
+          .then((response) => {
+            window.location.replace(response.authorization_url);
+          })
+          .catch(() => {
+            errorNotification(
+              "Your order could not be placed right now. Please try again later."
+            );
+          });
       } else {
-        errorNotification('Please fill all required fields. We need the info to deliver to you :)')
+        errorNotification(
+          "Please fill all required fields. We need your info to deliver to you :)"
+        );
       }
-    }
-  }
-}
+    },
+  },
+};

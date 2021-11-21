@@ -49,6 +49,8 @@ export class ReservationValidator {
     @required()
     time
 
+    @maxNumber({value: 24, message: 'Duration cannot be more than 24 hour'})
+    @minNumber({value: 1, message: 'Duration cannot be less than 1 hour'})
     @required()
     duration
 

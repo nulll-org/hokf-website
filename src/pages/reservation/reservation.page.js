@@ -10,8 +10,8 @@ export default {
   data() {
     const formBuilder = new RxFormBuilder();
     const reservationFormGroup = formBuilder.formGroup(ReservationValidator);
-    const duration = ['1 hour', '2 hours', '4 hours', '6 hours', 'Whole Day'];
-    const areas = ['Pitch', 'Cinema', 'Garden', 'Gym', 'Whole HOKF'];
+    const duration = ['1 hour', '1.5 hours', '2 hours', '4 hours', '6 hours', '8 hours', '10 hours', 'Whole Day'];
+    const areas = ['Astro-Turf Pitch', 'Natural Pitch', 'Garden', 'Event Center', 'Whole HoKF Garden'];
     return {
       reservationMade: false,
       reservationFormGroup,

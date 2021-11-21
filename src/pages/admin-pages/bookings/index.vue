@@ -199,7 +199,7 @@
             <div class="flex space-x-2 mb-2">
               <p class="text-sm flex font-bold font-mulish">Duration:</p>
               <p class="text-sm uppercase flex font-bold font-mulish">
-                {{ modalData.duration }}
+                <span class="mr-1">{{ modalData.duration }}</span> <span v-if="modalData.duration < 24"> Hour<span v-if="modalData.duration > 1">s</span> </span>
               </p>
             </div>
             <div class="flex w-full space-x-2 mb-2">
