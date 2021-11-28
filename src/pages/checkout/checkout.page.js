@@ -1,4 +1,4 @@
-import { createOrder, getNigerianStates } from "../../store/api";
+import { createOrder } from "../../store/api";
 import onlineStore from "../../store/modules/online-store";
 import { RxFormBuilder } from "@rxweb/reactive-forms";
 import { OrderValidator } from "../../store/validators";
@@ -21,7 +21,45 @@ export default {
     const orderFormGroup = formBuilder.formGroup(OrderValidator);
 
     return {
-      states: [],
+      states: [
+        "Abia",
+        "Adamawa",
+        "Akwa Ibom",
+        "Anambra",
+        "Bauchi",
+        "Bayelsa",
+        "Benue",
+        "Borno",
+        "Cross River",
+        "Delta",
+        "Ebonyi",
+        "Edo",
+        "Ekiti",
+        "Enugu",
+        "Federal Capital Territory",
+        "Gombe",
+        "Imo",
+        "Jigawa",
+        "Kaduna",
+        "Kano",
+        "Katsina",
+        "Kebbi",
+        "Kogi",
+        "Kwara",
+        "Lagos",
+        "Nasarawa",
+        "Niger",
+        "Ogun",
+        "Ondo",
+        "Osun",
+        "Oyo",
+        "Plateau",
+        "Rivers",
+        "Sokoto",
+        "Taraba",
+        "Yobe",
+        "Zamfara",
+      ],
       orderFormGroup,
       country: "Nigeria",
     };
@@ -36,13 +74,6 @@ export default {
     loading() {
       return loading.state.loading;
     },
-  },
-  mounted() {
-    getNigerianStates().then((states) => {
-      states.forEach((state) => {
-        this.states.push(state.name);
-      });
-    });
   },
   methods: {
     async checkOut() {
