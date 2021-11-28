@@ -62,6 +62,7 @@ export default {
       ],
       orderFormGroup,
       country: "Nigeria",
+      loading: false
     };
   },
   computed: {
@@ -79,6 +80,7 @@ export default {
     async checkOut() {
       if (this.orderFormGroup.valid) {
         let _cartItems = [];
+        this.loading = true;
         this.cartItems.forEach((cartItem) => {
           _cartItems.push({
             productId: cartItem.product.id,
@@ -102,9 +104,15 @@ export default {
             country: this.country,
           },
         };
-        const paystack = await createOrder(order);
-        console.log(paystack)
-        window.location.replace(paystack.authorization_url);
+        createOrder(order)
+          .then((response) => {
+            window.location.replace(response.authorization_url);
+          })
+          .catch(() => {
+            errorNotification(
+              "Your order could not be placed right now. Please try again later."
+            );
+          });
       } else {
         errorNotification(
           "Please fill all required fields. We need your info to deliver to you :)"

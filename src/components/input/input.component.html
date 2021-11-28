@@ -1,7 +1,7 @@
 <div class="input flex flex-col space-y-3">
   <p>{{ label }} <span class="text-red-600" v-if="!optional">*</span></p>
   <div class="border border-solid border-gray-700 w-full" :class="{'px-3 py-2': smaller, 'px-4 py-3': !smaller}">
-    <input v-model="modelValue.props[field]" :type="type" :placeholder="placeholder" name="First Name"
+    <input v-model="modelValue.props[field]" :type="type" :placeholder="placeholder" :name="label"
       class="font-inter w-full">
     </div>
     <small class="text-red-600 mt-2 font-inter font-bold"

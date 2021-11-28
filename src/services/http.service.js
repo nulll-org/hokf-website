@@ -1,5 +1,4 @@
 import axios from "axios";
-import loading from "../store/modules/loading";
 import { errorNotification } from "./notification.service";
 
 const config = {
@@ -9,16 +8,10 @@ const config = {
   },
 };
 
-let activeRequests = 0;
 
 const httpService = axios.create(config);
 
 const authInterceptor = (config) => {
-  if (activeRequests === 0) {
-    loading.startLoading();
-  }
-
-  activeRequests++;
 
   return config;
 };
@@ -27,18 +20,10 @@ httpService.interceptors.request.use(authInterceptor);
 
 httpService.interceptors.response.use(
   (response) => {
-    activeRequests--;
-    if (activeRequests === 0) {
-      loading.stopLoading();
-    }
-
     return response;
   },
   (error) => {
-    activeRequests--;
-    if (activeRequests === 0) {
-      loading.stopLoading();
-    }
+    console.log(error)
     if (error.response.status === 401) {
       // Throw Unauthorized Error Message
       errorNotification(
