@@ -84,6 +84,7 @@ export default {
         this.cartItems.forEach((cartItem) => {
           _cartItems.push({
             productId: cartItem.product.id,
+            product: cartItem.product,
             quantity: cartItem.quantity,
             size: cartItem.size,
           });

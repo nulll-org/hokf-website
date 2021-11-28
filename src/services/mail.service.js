@@ -46,7 +46,7 @@ export async function sendOrderReminderMail(receipient, content) {
     template: {
       name: "orderReminder",
       data: {
-        cartItems: content.cartItems,
+        cartItem: content.cartItems,
         price: content.price,
         firstName: content.firstName,
         lastName: content.lastName,
