@@ -102,7 +102,7 @@ export default {
             country: this.country,
           },
         };
-        await createOrder(order)
+        createOrder(order)
           .then((response) => {
             window.location.replace(response.authorization_url);
           })
