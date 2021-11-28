@@ -102,15 +102,9 @@ export default {
             country: this.country,
           },
         };
-        createOrder(order)
-          .then((response) => {
-            window.location.replace(response.authorization_url);
-          })
-          .catch(() => {
-            errorNotification(
-              "Your order could not be placed right now. Please try again later."
-            );
-          });
+        const paystack = await createOrder(order);
+        console.log(paystack)
+        window.location.replace(paystack.authorization_url);
       } else {
         errorNotification(
           "Please fill all required fields. We need your info to deliver to you :)"
