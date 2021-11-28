@@ -14,13 +14,13 @@
           xl:2/10
         "
       >
-        <div class="logo w-20 mt-4 mx-auto cursor-pointer lg:w-32 xl:w-40">
+        <router-link to="/" class="logo w-20 mt-4 mx-auto cursor-pointer lg:w-32 xl:w-40">
           <img
             class="object-cover"
             src="../../../assets/logo.png"
             alt="HOKF Logo"
           />
-        </div>
+        </router-link>
         <div class="flex flex-col space-y-4 text-gray-500 font-mulish">
           <router-link
             to="/admin/overview"

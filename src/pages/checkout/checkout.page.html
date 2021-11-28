@@ -54,7 +54,7 @@
               {{ cartItem.product.name }}
             </p>
             <money
-              class="font-inter font-bold text-dark-grey text-sm bg-none w-ful"
+              class="font-inter font-bold text-dark-grey text-sm  bg-transparent w-ful"
               disabled
               :value="cartItem.price"
             />
@@ -155,7 +155,7 @@
     >
       <h3 class="ml-auto md:text-lg md:hidden">TOTAL</h3>
       <money
-        class="font-inter font-bold text-right text-dark-grey text-3xl bg-none w-2/3 md:text-xl md:mt-4 lg:text-2xl"
+        class="font-inter font-bold text-right text-dark-grey text-3xl  bg-transparent w-2/3 md:text-xl md:mt-4 lg:text-2xl"
         disabled
         :value="total"
       />

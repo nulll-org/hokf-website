@@ -32,13 +32,13 @@
           </p>
           <div class="flex flex-col">
             <money
-              class="font-inter inline-block font-bold text-dark-grey md:text-lg bg-white"
+              class="font-inter inline-block font-bold text-dark-grey md:text-lg bg-transparent"
               disabled
               :value="product.discountedPrice"
             />
             <money
               v-if="product.discountPercentage"
-              class="font-inter text-gray-500 inline-block font-bold line-through md:text-sm bg-white"
+              class="font-inter text-gray-500 inline-block font-bold line-through md:text-sm bg-transparent"
               disabled
               :value="product.price"
             />

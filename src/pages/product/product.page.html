@@ -33,12 +33,12 @@
         </p>
         <money
           v-if="product.discountPercentage"
-          class="font-inter text-gray-500 inline-block font-bold line-through md:text-sm bg-white"
+          class="font-inter text-gray-500 inline-block font-bold line-through md:text-sm bg-transparent"
           disabled
           :value="product.price"
         />
         <money
-          class="font-inter font-bold text-dark-grey text-xl bg-white"
+          class="font-inter font-bold text-dark-grey text-xl bg-transparent"
           disabled
           :value="product.discountedPrice"
         />
