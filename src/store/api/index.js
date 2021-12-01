@@ -91,7 +91,7 @@ export async function newReservation(reservation) {
     const dateTime = new Date(`${_reservation.date}, ${_reservation.time}`)
     const date = dateTime.toLocaleDateString('en-us', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})
     const time = dateTime.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
-    const data = {..._reservation, date: date, time: time}
+    const data = {..._reservation, duration: `${_reservation.duration} hour(s)`, date: date, time: time}
     sendTemplateMailToAdmin('newBooking', data)
     return response
 }
